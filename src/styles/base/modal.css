@@ -1,0 +1,33 @@
+.ReactModal__Body--open,
+.ReactModal__Html--open {
+  overflow: hidden;
+}
+ 
+ .Modal {
+    position: absolute!important;
+    top: 10%;
+    left: 35%;
+    right: auto;
+    bottom: auto;
+    width: auto;
+    margin-Right:-50%;
+    background-color: white;
+    opacity:1;
+    transition: -webkit-transform 0.3s ease-out!important;
+    transition: transform 0.3s ease-out!important;
+    transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out!important;
+    -webkit-transform: translate(0, -25%)!important;
+    transform: translate(0, -25%)!important;
+
+    -webkit-transform: translate(0, 0)!important;
+    transform: translate(0, 0)!important;
+
+  }
+  .Overlay {
+    position: absolute!important;;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(253, 253, 253);
+  }

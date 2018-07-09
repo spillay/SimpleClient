@@ -1,0 +1,29 @@
+.html {
+  font-size: 13px;
+  font-family: "Source Sans Pro", sans-serif; }
+
+.body {
+  font-weight: 400;
+  font-size: 1rem;
+  font-family: "Source Sans Pro", sans-serif;
+  line-height: 1.6;
+  color: #555;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility; }
+
+.h1 {
+  color: brown; }
+
+.pt-7 {
+  padding-top: 70px !important; }
+
+.custom-button {
+  border-radius: 20px 20px 20px 20px !important; }
+
+.error-messages {
+  color: red;
+  font-size: 12px; }
+
+.label {
+  color: #007db5 !important; }

@@ -1,0 +1,15 @@
+
+// My Bootstrap configuration
+@import './base/custom_bootstrap';
+
+//for the styling part import Precompiled SASS
+@import "../../node_modules/bootstrap/scss/bootstrap.scss"; 
+
+// This line will only import the js part of bootstrap-select.
+@import "../../node_modules/bootstrap-select/sass/bootstrap-select.scss"; 
+
+@import "../../node_modules/bootstrap-slider/src/sass/bootstrap-slider.scss";
+
+
+
+
