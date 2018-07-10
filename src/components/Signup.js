@@ -12,7 +12,8 @@ import { addUser } from '../backend/mutations';
         // console.log("in LoginView constructor");
         this.state = {
 			submitted: false,
-			errors: []
+            errors: [],
+            valueData: {}
         }
     } // end of constructor
 
@@ -84,6 +85,7 @@ import { addUser } from '../backend/mutations';
 											
                                             <DynamicForm           // configure the form  controls
                                                 model={signupForm}
+                                                valueData={this.state.valueData}
                                                 groups={1} // groups will be 1 to 4 only 1=col-md-12,  2= col-md-6 , 3=col-md-4  4= col-md-3
                                                 columns='col-md-12'
                                                 ref={(node) => this.dynForm = node}

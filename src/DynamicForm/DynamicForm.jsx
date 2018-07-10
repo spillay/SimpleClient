@@ -205,7 +205,7 @@ export class DynamicForm extends Component {
                 {
                     row.map((m, idx) => {
                         let { key, type, label,header, opts, options } = m
-                        m.value = this.state.fields[key];
+                        //m.value = this.state.fields[key];
                         let input;
 
                         if (type === "text" || "email" || "password" || "number") {
