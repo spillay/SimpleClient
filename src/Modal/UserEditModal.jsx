@@ -7,6 +7,7 @@ import { signupForm } from '../forms/form.json'
 import withData from '../backend/withData'
 import { editUser } from '../backend/mutations';
 import { User } from '../backend/queries';
+import { isEmpty } from '../utils/helpers';
 
 class UserEditModal extends Component {
 	constructor(props) {
@@ -40,7 +41,7 @@ class UserEditModal extends Component {
 	}
 
 	checkStage = () => {
-		console.log("checkStage",this.dynForm)
+		console.log("checkStage", this.dynForm)
 		if (this.dynForm === null || this.dynForm === undefined) {
 			return true;
 		}
@@ -59,12 +60,14 @@ class UserEditModal extends Component {
 
 
 	handleSubmit = (e) => {
+		console.log("UserEditModal",e);
 		e.preventDefault();
 		if (this.dynForm.checkValidations() === true) {
 			var data = this.dynForm.getData();
 			this.setState({ submitted: true })
 			console.log("now you can submit...", data);
 			this.editUserAsPromise(editUser, data);  // login mutation 
+			this.props.closeModal();
 		}
 	}
 
@@ -84,7 +87,7 @@ class UserEditModal extends Component {
 
 	render() {
 
-		console.log("rendering",this.state.valueData)
+		console.log("rendering", this.state.valueData)
 		return (
 			<div>
 				<ReactModal
@@ -115,15 +118,19 @@ class UserEditModal extends Component {
 											{error}
 										</div>)}
 									</div>
-
-									<DynamicForm           // configure the form  controls
-										model={signupForm}
-										valueData={this.state.valueData}
-										groups={1} // groups will be 1 to 4 only 1=col-md-12,  2= col-md-6 , 3=col-md-4  4= col-md-3
-										columns='col-md-12'
-										ref={(node) => this.dynForm = node}
-										reload={this.reload} >
-									</DynamicForm>
+									{isEmpty(this.state.valueData) &&
+										<div>loading...</div>
+									}
+									{!isEmpty(this.state.valueData) &&
+										<DynamicForm           // configure the form  controls
+											model={signupForm}
+											valueData={this.state.valueData}
+											groups={1} // groups will be 1 to 4 only 1=col-md-12,  2= col-md-6 , 3=col-md-4  4= col-md-3
+											columns='col-md-12'
+											ref={(node) => this.dynForm = node}
+											reload={this.reload} >
+										</DynamicForm>
+									}
 								</ErrorBoundary>
 								<hr />
 								<div className='row'>

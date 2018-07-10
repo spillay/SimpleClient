@@ -11,6 +11,7 @@ export class TextView extends Component {
         }
     }
     onChange = (e) => {
+        console.log("TextView:onChange",e.target.value)
         this.setState({ value: e.target.value, dirty: true }, () => {
             this.props.onChange({ target: { value: this.state.value } }, this.props._key)
         })

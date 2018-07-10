@@ -25,7 +25,7 @@ export class DynamicForm extends Component {
         this.state = {
             validationErrors: {},
             fieldValidations: [],
-            fields: {},
+            fields: this.props.valueData,
             stage: "Initial"
         };
         //console.log("Props Iterator");
@@ -125,22 +125,29 @@ export class DynamicForm extends Component {
     }
 
     getData = () => {
-        var data = {};
-        this.props.model.map((row, idx) => {
-            // console.log("key :", row.key);
-        return    data[row.key] = this.state.fields[row.key];
-        })
-        return data;
+        // var data = {};
+        // this.props.model.map((row, idx) => {
+        //     // console.log("key :", row.key);
+        //     return    data[row.key] = this.state.fields[row.key];
+        // })
+        // return data;
+        return this.state.fields;
     }
 
     getValue = (name) => {
         console.log("getValue", name,this.props.valueData)
-        if (this.props.valueData && this.props.valueData[name] !== undefined ){
-            console.log("return value")
-            return this.props.valueData[name]
+        
+        if (this.state.fields[name] !== undefined){
+            return this.state.fields[name];
         } else {
             return ""
         }
+        // if (this.props.valueData && this.props.valueData[name] !== undefined ){
+        //     console.log("return value")
+        //     return this.props.valueData[name]
+        // } else {
+        //     return ""
+        // }
     }
 
     checkValidations = () => {
@@ -158,6 +165,7 @@ export class DynamicForm extends Component {
         // console.log(`key : ${key}  - e: ${e}`, e);
         var localFields = { ...this.state.fields }
         localFields[key] = e.target.value;
+        console.log(localFields)
         this.setState({ fields: localFields, stage: "Incomplete" }, () => {  // call back function
             this.setState({ validationErrors: run(this.state.fields, this.state.fieldValidations) }, () => {
                 // console.log(`newState onChange() :${JSON.stringify(this.state)}`) // print new state 
