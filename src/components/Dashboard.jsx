@@ -45,8 +45,15 @@ class Dashboard extends React.Component {
 
   getUsersAsPromise = () => {
     this.readData(Users, {}).then(result => {
-      // console.log("Users :", result)
+      console.log('Users :', result);
       this.setState({ gdata: result });
+    });
+  };
+
+  roleFormatter = (cell, row, enumObject, rowIndex) => {
+    // console.log('roleFormatter :', row.roles)
+    return row.roles.map(r => {
+      return r.name;
     });
   };
 
@@ -227,7 +234,14 @@ class Dashboard extends React.Component {
               <TableHeaderColumn dataField="cellNumber" width="200">
                 cellNumber
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="roles">Roles</TableHeaderColumn>
+
+              <TableHeaderColumn
+                dataField="roles"
+                dataFormat={this.roleFormatter}
+              >
+                Roles
+              </TableHeaderColumn>
+
               <TableHeaderColumn
                 dataField="button"
                 dataFormat={this.buttonFormatterEdit}
@@ -244,20 +258,6 @@ class Dashboard extends React.Component {
       );
     }
   }
-
-  //   render () {
-  //     return (
-  // 		<div>
-  // 		<main role="main" className="container pt-7">
-  // 				<div className="row">
-  // 					<h1> Dashboard...</h1>
-  // 				</div>
-  // 			</main>
-  // 		</div>
-
-  //     )
-  //   }
 }
 
-// multiple mutation
 export default withData(Dashboard);

@@ -62,6 +62,13 @@ class SearchUsers extends React.Component {
       });
   };
 
+  roleFormatter = (cell, row, enumObject, rowIndex) => {
+    // console.log('roleFormatter :', row.roles)
+    return row.roles.map(r => {
+      return r.name;
+    });
+  };
+
   buttonFormatterEdit = (cell, row, enumObject, rowIndex) => {
     return (
       <button
@@ -260,7 +267,12 @@ class SearchUsers extends React.Component {
               <TableHeaderColumn dataField="cellNumber" width="200">
                 cellNumber
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="roles">Roles</TableHeaderColumn>
+              <TableHeaderColumn
+                dataField="roles"
+                dataFormat={this.roleFormatter}
+              >
+                Roles
+              </TableHeaderColumn>
               <TableHeaderColumn
                 dataField="button"
                 dataFormat={this.buttonFormatterEdit}

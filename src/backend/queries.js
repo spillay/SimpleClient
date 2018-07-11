@@ -39,7 +39,8 @@ export const SearchUsersQuery = gql`
       email
       cellNumber
       roles {
-        role: name
+        key: id
+        name
       }
     }
   }

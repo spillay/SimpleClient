@@ -44,7 +44,7 @@ class Header extends React.Component {
       <div>
         <li className="nav-item list-inline-item">
           <Link to="/search" className="btn btn-primary" replace>
-            Search Property
+            Search User
           </Link>
         </li>
         <li className="nav-item list-inline-item">
