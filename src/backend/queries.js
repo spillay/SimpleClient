@@ -9,7 +9,7 @@ export const Users = gql`
       password
       cellNumber
       roles {
-        key: id
+        ID: id
         name
       }
     }
@@ -25,7 +25,8 @@ export const User = gql`
       password
       cellNumber
       roles {
-        key: id
+        ID: id
+        name
       }
     }
   }
@@ -39,7 +40,7 @@ export const SearchUsersQuery = gql`
       email
       cellNumber
       roles {
-        key: id
+        ID: id
         name
       }
     }
