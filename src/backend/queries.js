@@ -1,25 +1,46 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export const Users = gql`
-{
-    getAllUsers{
-		userId:id name email password cellNumber roles{
-		  roleId:id name
-		}
-	  }
-}
-`
-
-
-
+  {
+    getAllUsers {
+      userId: id
+      name
+      email
+      password
+      cellNumber
+      roles {
+        key: id
+        name
+      }
+    }
+  }
+`;
 
 export const User = gql`
- query User($ID:ID!) {
+  query User($ID: ID!) {
     getUserById(_id: $ID) {
-		userId:id name email cellNumber roles{
-		  roleId:id
-		}
-	  }
-	}
+      userId: id
+      name
+      email
+      password
+      cellNumber
+      roles {
+        key: id
+      }
+    }
+  }
+`;
 
-`
+export const SearchUsersQuery = gql`
+  query SearchUsersQuery($name: String) {
+    searchUsers(name: $name) {
+      userId: id
+      name
+      email
+      cellNumber
+      roles {
+        role: name
+      }
+    }
+  }
+`;
