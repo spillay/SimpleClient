@@ -18,7 +18,7 @@ export class CheckboxView extends Component {
 
   onChange = e => {
     // console.log("Key-checked :",e.target.value)
-    // console.log("e.target.checked :",e.target.checked)
+    console.log('e.target.checked :', e.target.checked);
 
     if (e.target.checked === true) {
       this.state.selected.push(e.target.value); // add item into array

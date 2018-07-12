@@ -174,7 +174,7 @@ export class DynamicForm extends Component {
     // console.log(`key : ${key}  - e: ${e}`, e);
     var localFields = { ...this.state.fields };
     localFields[key] = e.target.value;
-    console.log(localFields);
+    console.log('localFields(onChange()) :', localFields);
     this.setState({ fields: localFields, stage: 'Incomplete' }, () => {
       // call back function
       this.setState(
@@ -305,7 +305,7 @@ export class DynamicForm extends Component {
           }
 
           if (type === 'checkbox') {
-            console.log('checkbox :', valData);
+            // console.log('checkbox :', valData);
             input = (
               <CheckboxView
                 _key={key}

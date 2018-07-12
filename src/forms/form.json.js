@@ -34,32 +34,32 @@ export const signupForm = [
       {
         key: '5b3ff4637cae2a3814478c9f',
         label: 'Administrator',
-        value: '5b3ff4637cae2a3814478c9f'
+        value: 'Administrator'
       },
       {
         key: '5b3ff4757cae2a3814478ca0',
         label: 'Capturer',
-        value: '5b3ff4757cae2a3814478ca0'
+        value: 'Capturer'
       },
       {
         key: '5b3ff4837cae2a3814478ca2',
         label: 'Manager',
-        value: '5b3ff4837cae2a3814478ca2'
+        value: 'Manager'
       },
       {
         key: '5b3ff47c7cae2a3814478ca1',
         label: 'SuperUser',
-        value: '5b3ff47c7cae2a3814478ca1'
+        value: 'SuperUser'
       },
       {
         key: '5b3ff48d7cae2a3814478ca3',
         label: 'Resolver',
-        value: '5b3ff48d7cae2a3814478ca3'
+        value: 'Resolver'
       },
       {
         key: '5b3ff4997cae2a3814478ca4',
         label: 'QA',
-        value: '5b3ff4997cae2a3814478ca4'
+        value: 'QA'
       }
     ]
   },
