@@ -34,7 +34,6 @@ export class DynamicForm extends Component {
       fields: this.props.valueData === undefined ? {} : this.props.valueData,
       stage: 'Initial'
     };
-    // console.log('DynamicForm :', this.state.fields);
     //console.log("Props Iterator");
     this.props.model.map((row, idx) => {
       // row = each formControl , idx=index
@@ -144,9 +143,10 @@ export class DynamicForm extends Component {
   };
 
   getValue = name => {
-    // console.log("getValue", name,this.props.valueData)
+    console.log('getValue', name, this.props.valueData);
 
     if (this.state.fields[name] !== undefined) {
+      console.log('getValue', this.state.fields[name]);
       return this.state.fields[name];
     } else {
       return '';

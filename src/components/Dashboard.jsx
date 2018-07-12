@@ -15,32 +15,8 @@ class Dashboard extends React.Component {
     };
   }
 
-  componentDidMount() {
-    // is invoked immediately after a component is mounted (inserted into the tree).
-  }
   componentWillMount() {
     this.getUsersAsPromise();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // console.log("nextProps:", this.props,nextProps)
-    // if (nextProps.params.id !== this.props.params.id) {
-    // 	this.getUsersAsPromise();
-    // }
-  }
-
-  componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
-    // if (this.props.userID !== prevProps.userID) {
-    //   this.fetchData(this.props.userID);
-    // }
-    // console.log("prevProps:", prevProps)
-  }
-
-  componentWillUpdate(nextProps) {
-    //	this.props // the old, current set of props
-    //	nextProps // the next set of props that will be in place when the component rendered
-    // console.log("old, current :", this.props ," next set of props :" ,nextProps)
   }
 
   getUsersAsPromise = () => {
@@ -108,6 +84,7 @@ class Dashboard extends React.Component {
   };
 
   handleCloseModal = () => {
+    this.getUsersAsPromise();
     this.setState(() => ({ selectedUser: undefined })); // override the previous value
   };
 

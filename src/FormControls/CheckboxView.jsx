@@ -11,7 +11,10 @@ export class CheckboxView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: []
+      selected:
+        this.props.value === undefined || this.props.value === ''
+          ? []
+          : this.props.value
     };
   }
 
