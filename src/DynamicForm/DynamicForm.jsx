@@ -174,7 +174,7 @@ export class DynamicForm extends Component {
     // console.log(`key : ${key}  - e: ${e}`, e);
     var localFields = { ...this.state.fields };
     localFields[key] = e.target.value;
-    console.log('localFields(onChange()) :', localFields);
+    // console.log('localFields(onChange()) :', localFields);
     this.setState({ fields: localFields, stage: 'Incomplete' }, () => {
       // call back function
       this.setState(
@@ -221,7 +221,7 @@ export class DynamicForm extends Component {
             var valData = this.getValue(key);
             // console.log(valData);
             if (valData !== '') {
-              console.log('TextView Found');
+              //   console.log('TextView Found');
               input = (
                 <TextView
                   _key={key}

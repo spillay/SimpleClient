@@ -11,22 +11,18 @@ export class CheckboxView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: [],
-      isChecked: false
+      selected: []
     };
   }
 
   onChange = e => {
-    console.log('Key-checked :', e.target.value);
-    console.log('e.target.checked :', e.target.checked);
+    // console.log("Key-checked :",e.target.value)
+    // console.log('e.target.checked :', e.target.checked);
 
     if (e.target.checked === true) {
       this.state.selected.push(e.target.value); // add item into array
-    } else {
-      //   this.state.selected = this.state.selected.filter((d) => (  // remove item from array
-      //     d !== e.target.value
-      // 	));
-
+    }
+    if (e.target.checked === false) {
       this.setState(
         {
           selected: this.state.selected.filter(
@@ -34,8 +30,7 @@ export class CheckboxView extends Component {
           )
         },
         () => {
-          console.log('state :', this.state.selected, this.props._key);
-          // console.log(JSON.stringify(this.state))
+          // console.log('state :',JSON.stringify(this.state))
           this.props.onChange(
             { target: { value: this.state.selected } },
             this.props._key
@@ -43,6 +38,11 @@ export class CheckboxView extends Component {
         }
       );
     }
+    // console.log('state :',JSON.stringify(this.state))
+    this.props.onChange(
+      { target: { value: this.state.selected } },
+      this.props._key
+    );
   };
 
   render() {
