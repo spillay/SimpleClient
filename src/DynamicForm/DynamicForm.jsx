@@ -34,7 +34,7 @@ export class DynamicForm extends Component {
       fields: this.props.valueData === undefined ? {} : this.props.valueData,
       stage: 'Initial'
     };
-    console.log('DynamicForm :', this.state.fields);
+    // console.log('DynamicForm :', this.state.fields);
     //console.log("Props Iterator");
     this.props.model.map((row, idx) => {
       // row = each formControl , idx=index
@@ -300,41 +300,21 @@ export class DynamicForm extends Component {
                 opts={opts}
                 errorFor={this.errorFor}
                 onChange={this.onChange}
-              >
-                {' '}
-              </RadioView>
+              />
             );
           }
 
           if (type === 'checkbox') {
-            if (valData !== '') {
-              console.log('checkbox :', valData);
-              input = (
-                <CheckboxView
-                  _key={key}
-                  //   checked={console.log(valData.filter((d) => (d.key !== key)))}
-                  options={options}
-                  opts={opts}
-                  errorFor={this.errorFor}
-                  onChange={this.onChange}
-                >
-                  {' '}
-                </CheckboxView>
-              );
-            } else {
-              //   console.log("checkbox :",options);
-              input = (
-                <CheckboxView
-                  _key={key}
-                  options={options}
-                  opts={opts}
-                  errorFor={this.errorFor}
-                  onChange={this.onChange}
-                >
-                  {' '}
-                </CheckboxView>
-              );
-            }
+            console.log('checkbox :', valData);
+            input = (
+              <CheckboxView
+                _key={key}
+                options={options}
+                opts={opts}
+                errorFor={this.errorFor}
+                onChange={this.onChange}
+              />
+            );
           }
 
           if (type === 'SingleDatePicker') {
@@ -362,8 +342,7 @@ export class DynamicForm extends Component {
           return (
             <div key={idx} className={'form-group ' + columns}>
               <label key={'l' + key} htmlFor={key}>
-                {' '}
-                {m.label} :{' '}
+                {m.label} :
               </label>
               {input}
             </div>

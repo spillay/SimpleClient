@@ -67,7 +67,7 @@ class UserEditModal extends Component {
 
   editUserAsPromise = (editUser, data) => {
     this.mutateData(editUser, {
-      ID: data.id,
+      ID: data.userId,
       name: data.name,
       email: data.email,
       password: data.password,
@@ -75,8 +75,7 @@ class UserEditModal extends Component {
       roles: data.roles
     }) // return a promise
       .then(result => {
-        console.log('editUser :', result.data);
-        this.props.history.push('/dashboard'); // programatically routing
+        console.log('After editUser :', result.data);
       })
       .catch(res => {
         const errors = res.graphQLErrors.map(error => error.message);
@@ -85,7 +84,7 @@ class UserEditModal extends Component {
   };
 
   render() {
-    console.log('rendering', this.state.valueData);
+    // console.log('rendering', this.state.valueData);
     return (
       <div>
         <ReactModal

@@ -37,7 +37,7 @@ export const addUser = gql`
 `;
 export const editUser = gql`
   mutation EditUser(
-    $ID: userId!
+    $ID: ID!
     $name: String!
     $email: String!
     $cellNumber: String!
@@ -51,13 +51,6 @@ export const editUser = gql`
       roles: $roles
     ) {
       userId: id
-      name
-      email
-      cellNumber
-      roles {
-        roleId: id
-        name
-      }
     }
   }
 `;

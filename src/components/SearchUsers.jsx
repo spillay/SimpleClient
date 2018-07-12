@@ -254,17 +254,18 @@ class SearchUsers extends React.Component {
                 dataField="userId"
                 isKey={true}
                 dataSort={true}
-                width="40"
+                width="220"
+                columnClassName="td-column"
               >
                 userId
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="name" dataSort={true}>
+              <TableHeaderColumn dataField="name" dataSort={true} width="100">
                 First Name
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="email" dataSort={true}>
+              <TableHeaderColumn dataField="email" dataSort={true} width="180">
                 User Name
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="cellNumber" width="200">
+              <TableHeaderColumn dataField="cellNumber" width="100">
                 cellNumber
               </TableHeaderColumn>
               <TableHeaderColumn
