@@ -17,7 +17,7 @@ export class CheckboxView extends Component {
   }
 
   onChange = e => {
-    // console.log("Key-checked :",e.target.value)
+    console.log('Key-checked :', e.target.value);
     console.log('e.target.checked :', e.target.checked);
 
     if (e.target.checked === true) {
@@ -27,19 +27,22 @@ export class CheckboxView extends Component {
       //     d !== e.target.value
       // 	));
 
-      this.setState({
-        selected: this.state.selected.filter(
-          (
-            d // remove item from array
-          ) => d !== e.target.value
-        )
-      });
+      this.setState(
+        {
+          selected: this.state.selected.filter(
+            d => d !== e.target.value // remove item from array
+          )
+        },
+        () => {
+          console.log('state :', this.state.selected, this.props._key);
+          // console.log(JSON.stringify(this.state))
+          this.props.onChange(
+            { target: { value: this.state.selected } },
+            this.props._key
+          );
+        }
+      );
     }
-    // console.log(JSON.stringify(this.state))
-    this.props.onChange(
-      { target: { value: this.state.selected } },
-      this.props._key
-    );
   };
 
   render() {
