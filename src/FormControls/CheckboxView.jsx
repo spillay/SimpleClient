@@ -16,17 +16,17 @@ export class CheckboxView extends Component {
   }
 
   onChange = e => {
-    // console.log("Key-checked :",e.target.value)
-    // console.log('e.target.checked :', e.target.checked);
+    console.log('Key-checked :', e, e.target.name);
+    console.log('e.target.checked :', e.target.checked);
 
     if (e.target.checked === true) {
-      this.state.selected.push(e.target.value); // add item into array
+      this.state.selected.push(e.target.name); // add item into array
     }
     if (e.target.checked === false) {
       this.setState(
         {
           selected: this.state.selected.filter(
-            d => d !== e.target.value // remove item from array
+            d => d !== e.target.name // remove item from array
           )
         },
         () => {
@@ -38,13 +38,28 @@ export class CheckboxView extends Component {
         }
       );
     }
-    // console.log('state :',JSON.stringify(this.state))
+    console.log('selected :', JSON.stringify(this.state.selected));
     this.props.onChange(
       { target: { value: this.state.selected } },
       this.props._key
     );
   };
 
+  check = key => {
+    console.log('check', key, this.props.value);
+    var fd = false;
+    if (this.props.value !== '') {
+      this.props.value.forEach(e => {
+        console.log(e, key);
+        if (e === key) {
+          console.log('true');
+          fd = true;
+        }
+      });
+    }
+    console.log(fd);
+    return fd;
+  };
   render() {
     const content = this.props.options.map((row, idx) => (
       <div
@@ -59,8 +74,8 @@ export class CheckboxView extends Component {
           <input
             className="custom-control-input"
             type="checkbox"
-            key={row.key}
-            value={row.key}
+            name={row.key}
+            checked={!!this.check(row.key)}
             onChange={e => {
               this.onChange(e);
             }}

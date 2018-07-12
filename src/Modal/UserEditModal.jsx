@@ -27,7 +27,7 @@ class UserEditModal extends Component {
     const ID = this.props.selectedUser;
     console.log('EditUserId(modal) :', ID);
     this.readData(User, { ID }).then(result => {
-      // console.log("UserData(Model) :", result)
+      console.log('UserData(Model) :', result);
       this.setState({ valueData: result.data.getUserById });
     });
   };

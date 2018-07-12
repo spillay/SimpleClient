@@ -1,29 +1,26 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-
-
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class SelectView extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      selected: "",
       dirty: false
-    }
+    };
   }
   componentDidMount() {
     //$('.selectpicker').selectpicker()
   }
 
-
-  onChange = (e) => {
+  onChange = e => {
     // console.log("Select value: ", e.target.value);
-    this.setState({ selected: e.target.value, dirty: true }, () => {
-      this.props.onChange({ target: { value: this.state.selected } }, this.props._key)
-
-    })
-  }
+    this.setState({ dirty: true }, () => {
+      this.props.onChange(
+        { target: { value: e.target.value } },
+        this.props._key
+      );
+    });
+  };
 
   getClassName = () => {
     if (this.state.dirty === true) {
@@ -31,39 +28,44 @@ export class SelectView extends Component {
     } else {
       return 'form-control';
     }
-  }
-
-
+  };
 
   render() {
-    const options = this.props.options.map((o) => (
+    const options = this.props.options.map(o => (
       <option key={o.key} value={o.value}>
         {o.label}
       </option>
     ));
-    let content = <div key={this.props._key}>
-      <select
-        value={this.state.selected}
-        className={this.getClassName() + ' selectpicker show-tick show-menu-arrow'}
-        width='100px'
-        title="Choose one"
-        data-size="15"
-        data-header={this.props.header}
-        // data-live-search="false"
-        {...this.props.opts}
-        onChange={(e) => this.onChange(e)}>
-        {options}
-      </select>
-      <div className="validation-error" >{this.props.errorFor(this.props._key)}</div>
-      <small className="form-text text-muted">( Please provide valid {this.props.label}. )</small>
-    </div>;
-
+    let content = (
+      <div key={this.props._key}>
+        <select
+          value={this.props.value}
+          className={
+            this.getClassName() + ' selectpicker show-tick show-menu-arrow'
+          }
+          width="100px"
+          title="Choose one"
+          data-size="15"
+          data-header={this.props.header}
+          // data-live-search="false"
+          {...this.props.opts}
+          onChange={e => this.onChange(e)}
+        >
+          {options}
+        </select>
+        <div className="validation-error">
+          {this.props.errorFor(this.props._key)}
+        </div>
+        <small className="form-text text-muted">
+          ( Please provide valid {this.props.label}. )
+        </small>
+      </div>
+    );
 
     // console.log("select : Rendered....")
 
-    return content
+    return content;
   }
-
 } // end of TextView
 
 SelectView.propTypes = {
@@ -71,7 +73,7 @@ SelectView.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   errorFor: PropTypes.func.isRequired
-}
+};
 
 /*
   <select

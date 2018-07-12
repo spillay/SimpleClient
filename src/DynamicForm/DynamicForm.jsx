@@ -216,44 +216,28 @@ export class DynamicForm extends Component {
           let { key, type, label, header, opts, options } = m;
           //m.value = this.state.fields[key];
           let input;
-
+          var valData = this.getValue(key);
+          console.log('valData', valData);
           if (type === 'text' || 'email' || 'password' || 'number') {
-            var valData = this.getValue(key);
-            // console.log(valData);
-            if (valData !== '') {
-              //   console.log('TextView Found');
-              input = (
-                <TextView
-                  _key={key}
-                  label={label}
-                  value={valData}
-                  type={type}
-                  stage={this.state.stage}
-                  errorFor={this.errorFor}
-                  onChange={this.onChange}
-                  options={options}
-                />
-              );
-            } else {
-              input = (
-                <TextView
-                  _key={key}
-                  label={label}
-                  value=""
-                  type={type}
-                  stage={this.state.stage}
-                  errorFor={this.errorFor}
-                  onChange={this.onChange}
-                  options={options}
-                />
-              );
-            }
+            input = (
+              <TextView
+                _key={key}
+                label={label}
+                value={valData}
+                type={type}
+                stage={this.state.stage}
+                errorFor={this.errorFor}
+                onChange={this.onChange}
+                options={options}
+              />
+            );
           }
 
           if (type === 'textarea') {
             input = (
               <TextAreaView
                 _key={key}
+                value={valData}
                 label={label}
                 type={type}
                 stage={this.state.stage}
@@ -269,6 +253,7 @@ export class DynamicForm extends Component {
               <SelectView
                 _key={key}
                 label={label}
+                value={valData}
                 header={header}
                 errorFor={this.errorFor}
                 onChange={this.onChange}
@@ -283,6 +268,7 @@ export class DynamicForm extends Component {
             input = (
               <SliderView
                 _key={key}
+                value={valData}
                 label={label}
                 errorFor={this.errorFor}
                 onChange={this.onChange}
@@ -296,6 +282,7 @@ export class DynamicForm extends Component {
             input = (
               <RadioView
                 _key={key}
+                value={valData}
                 options={options}
                 opts={opts}
                 errorFor={this.errorFor}
@@ -309,6 +296,7 @@ export class DynamicForm extends Component {
             input = (
               <CheckboxView
                 _key={key}
+                value={valData}
                 options={options}
                 opts={opts}
                 errorFor={this.errorFor}
@@ -321,6 +309,7 @@ export class DynamicForm extends Component {
             input = (
               <SingleDatePickerView
                 _key={key}
+                value={valData}
                 label={label}
                 errorFor={this.errorFor}
                 onChange={this.onChange}
@@ -332,6 +321,7 @@ export class DynamicForm extends Component {
             input = (
               <DateRangePickerView
                 _key={key}
+                value={valData}
                 label={label}
                 errorFor={this.errorFor}
                 onChange={this.onChange}
