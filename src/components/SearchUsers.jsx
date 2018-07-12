@@ -126,7 +126,13 @@ class SearchUsers extends React.Component {
   onRowSelect = (row, isSelected, e) => {
     console.log(`is selected: ${isSelected}, UserId = ${row.userId}`);
   };
-
+  renderShowsTotal = (start, to, total) => {
+    return (
+      <p style={{ color: 'green' }}>
+        From {start} to {to}, totals is {total}&nbsp;&nbsp;
+      </p>
+    );
+  };
   render() {
     const selectRowProp = {
       mode: 'radio', //radio or checkbox
