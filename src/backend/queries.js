@@ -1,5 +1,13 @@
 import gql from 'graphql-tag';
 
+export const Role = gql`
+  query Role($name: String!) {
+    getRoleByName(name: $name) {
+      id
+    }
+  }
+`;
+
 export const Users = gql`
   {
     getAllUsers {
@@ -25,7 +33,7 @@ export const User = gql`
       password
       cellNumber
       roles {
-        id
+        name
       }
     }
   }

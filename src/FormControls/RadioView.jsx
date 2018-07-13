@@ -7,9 +7,9 @@ import PropTypes from 'prop-types';
 // ]
 
 export class RadioView extends Component {
-  constructor(props) {
-    super(props);
-  }
+  //   constructor(props) {
+  //     super(props);
+  //   }
 
   onChange = e => {
     // console.log("e.target.value :",e.target.value)

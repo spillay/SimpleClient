@@ -32,32 +32,32 @@ export const signupForm = [
     opts: { inline: true },
     options: [
       {
-        key: '5b4771797a287b1fc6e4a155',
+        key: 'Administrator',
         label: 'Administrator',
         value: 'Administrator'
       },
       {
-        key: '5b4771c17a287b1fc6e4a156',
+        key: 'Capturer',
         label: 'Capturer',
         value: 'Capturer'
       },
       {
-        key: '5b4771da7a287b1fc6e4a157',
+        key: 'Manager',
         label: 'Manager',
         value: 'Manager'
       },
       {
-        key: '5b4771e67a287b1fc6e4a158',
+        key: 'SuperUser',
         label: 'SuperUser',
         value: 'SuperUser'
       },
       {
-        key: '5b4771f27a287b1fc6e4a159',
+        key: 'Resolver',
         label: 'Resolver',
         value: 'Resolver'
       },
       {
-        key: '5b4771fb7a287b1fc6e4a15a',
+        key: 'QA',
         label: 'QA',
         value: 'QA'
       }

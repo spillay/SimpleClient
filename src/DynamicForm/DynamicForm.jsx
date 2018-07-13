@@ -143,10 +143,10 @@ export class DynamicForm extends Component {
   };
 
   getValue = name => {
-    console.log('getValue', name, this.props.valueData);
+    // console.log('getValue', name, this.props.valueData);
 
     if (this.state.fields[name] !== undefined) {
-      console.log('getValue', this.state.fields[name]);
+      //   console.log('getValue', this.state.fields[name]);
       return this.state.fields[name];
     } else {
       return '';
@@ -217,7 +217,7 @@ export class DynamicForm extends Component {
           //m.value = this.state.fields[key];
           let input;
           var valData = this.getValue(key);
-          console.log('valData', valData);
+          //   console.log('valData', valData);
           if (type === 'text' || 'email' || 'password' || 'number') {
             input = (
               <TextView

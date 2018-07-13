@@ -15,7 +15,7 @@ export const addUser = gql`
     $email: String!
     $password: String!
     $cellNumber: String!
-    $roles: [ID!]!
+    $roles: [String!]!
   ) {
     addUser(
       name: $name
@@ -29,7 +29,7 @@ export const addUser = gql`
       email
       cellNumber
       roles {
-        roleId: id
+        id
         name
       }
     }
@@ -41,7 +41,7 @@ export const editUser = gql`
     $name: String!
     $email: String!
     $cellNumber: String!
-    $roles: [ID!]!
+    $roles: [String!]!
   ) {
     editUser(
       _id: $ID

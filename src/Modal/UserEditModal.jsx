@@ -27,7 +27,7 @@ class UserEditModal extends Component {
     const ID = this.props.selectedUser;
     console.log('EditUserId(modal) :', ID);
     this.readData(User, { ID }).then(result => {
-      console.log('UserData(Model) :', result);
+      console.log('UserData(Model) :', result.data.getUserById);
       var data = {};
       data['userId'] = result.data.getUserById['userId'];
       data['name'] = result.data.getUserById['name'];
@@ -35,11 +35,11 @@ class UserEditModal extends Component {
       data['password'] = result.data.getUserById['password'];
       data['cellNumber'] = result.data.getUserById['cellNumber'];
       var roles = [];
-      result.data.getUserById['roles'].forEach(e => {
-        roles.push(e.id);
+      result.data.getUserById['roles'].map(e => {
+        return roles.push(e.name);
       });
       data['roles'] = roles;
-      console.log('========================================', data);
+      //   console.log('========================================', data);
       this.setState({ valueData: data });
     });
   };

@@ -9,7 +9,7 @@ export class TextView extends Component {
     };
   }
   onChange = e => {
-    console.log('TextView:onChange', e.target.value);
+    // console.log('TextView:onChange', e.target.value);
     this.props.onChange({ target: { value: e.target.value } }, this.props._key);
     this.setState({ dirty: true });
   };

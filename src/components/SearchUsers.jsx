@@ -223,11 +223,14 @@ class SearchUsers extends React.Component {
                 </div>
 
                 <div className="col-md-4 pt-5">
-                  <button className="btn btn-primary btn-block">
-                    {this.state.submitted ? (
+                  <button
+                    className="btn btn-primary btn-block"
+                    disabled={this.state.submitted || !!this.state.gdata}
+                  >
+                    {this.state.gdata && this.state.submitted ? (
                       <div>
-                        <i className="fa fa-spinner fa-spin" />{' '}
-                        {'Processing...'}
+                        <i className="fa fa-spinner fa-spin" />
+                        {' Processing...'}
                       </div>
                     ) : (
                       <i className="fa fa fa-search" aria-hidden="true" />

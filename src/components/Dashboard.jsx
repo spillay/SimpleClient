@@ -19,10 +19,25 @@ class Dashboard extends React.Component {
     this.getUsersAsPromise();
   }
 
+  componentDidUpdate() {
+    // this.getUsersAsPromise();
+    // console.log('componentDidUpdate...........',this.state.gdata)
+  }
+  componentWillUpdate() {
+    // this.getUsersAsPromise();
+    // console.log('componentWillUpdate...........')
+  }
+
   getUsersAsPromise = () => {
     this.readData(Users, {}).then(result => {
       console.log('Users :', result);
-      this.setState({ gdata: result });
+      this.setState(
+        { gdata: result.data.getAllUsers },
+        () => {
+          this.forceUpdate();
+        }
+        // return result.data.getAllUsers
+      );
     });
   };
 
@@ -84,6 +99,7 @@ class Dashboard extends React.Component {
   };
 
   handleCloseModal = () => {
+    console.log('handleCloseModal.........');
     this.getUsersAsPromise();
     this.setState(() => ({ selectedUser: undefined })); // override the previous value
   };
@@ -188,7 +204,7 @@ class Dashboard extends React.Component {
               {this.state.errors.map(error => <div key={error}>{error}</div>)}
             </div>
             <BootstrapTable
-              data={this.state.gdata.data.getAllUsers}
+              data={this.state.gdata}
               version="4"
               hover={true}
               bordered={true}

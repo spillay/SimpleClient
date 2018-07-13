@@ -5,6 +5,7 @@ import { signupForm } from '../forms/form.json';
 import logo from '../images/Loader.gif';
 import withData from '../backend/withData';
 import { addUser } from '../backend/mutations';
+// import { Role } from '../backend/queries';
 
 class Signup extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Signup extends Component {
     this.state = {
       submitted: false,
       errors: []
+      // roles:[]
     };
   } // end of constructor
 
@@ -43,7 +45,17 @@ class Signup extends Component {
       var data = this.dynForm.getData();
       this.setState({ submitted: true });
       console.log('now you can submit...', data);
-      this.addUserAsPromise(addUser, data); // login mutation
+      // data.roles.map((r) => {
+
+      // 	this.readData(Role, { name: r }).then(result => {
+      // 		console.log('result...', result);
+      // 		this.state.roles.push(result.data.getRoleByName.id);
+      // 	})
+
+      // })
+
+      // console.log('roles...', this.state.roles);
+      this.addUserAsPromise(addUser, data); // signup mutation
     }
   };
   addUserAsPromise = (addUser, data) => {
