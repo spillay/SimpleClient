@@ -34,6 +34,7 @@ export class DynamicForm extends Component {
       fields: this.props.valueData === undefined ? {} : this.props.valueData,
       stage: 'Initial'
     };
+
     //console.log("Props Iterator");
     this.props.model.map((row, idx) => {
       // row = each formControl , idx=index
@@ -108,7 +109,16 @@ export class DynamicForm extends Component {
       }
       return '';
     });
-    // console.log("End Constructor");
+  } // end of constructor
+
+  componentWillMount() {
+    // let model = this.props.model;
+    // model = model.filter(((item) => {   // remove item from array
+    // 	// console.log('item :',item,this.excludeFormControls(item.key, item.type))
+    // 	return !this.excludeFormControls(item.key, item.type)
+    //   //   return
+    // }))
+    // model.map((m)=>console.log('new model :',m))
   }
 
   checkControls = key => {
@@ -197,8 +207,31 @@ export class DynamicForm extends Component {
     });
   }; // end of onChange()
 
+  excludeFormControls = (key, type) => {
+    var isExclude;
+    console.log('exclude(params) :', key, type);
+    this.props.exclude.map((m, indx) => {
+      if (m.key === key && m.type === type) {
+        console.log('exclude :', m);
+        return (isExclude = m.key);
+      }
+    });
+    return isExclude;
+  };
+
   renderForm = () => {
     let model = this.props.model;
+    model = model.filter(item => {
+      // remove item from array
+      if (this.props.exclude !== undefined) {
+        return item.key !== this.excludeFormControls(item.key, item.type);
+      } else {
+        return item.key;
+      }
+    });
+
+    model.map(m => console.log('new model :', m));
+
     const { groups, columns } = this.props;
 
     //step 1:
@@ -337,7 +370,8 @@ export class DynamicForm extends Component {
               {input}
             </div>
           );
-        })}
+        }) // end row map
+        }
       </div>
     ));
     return <div>{content}</div>;

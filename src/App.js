@@ -7,6 +7,7 @@ import Home from './components/Home';
 import NotFoundPage from './components/NotFoundPage';
 import Dashboard from './components/Dashboard';
 import SearchUsers from './components/SearchUsers';
+import SFC from './components/SFC';
 /*
 Centralized  application routing configuration
 */
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/search" component={SearchUsers} />
+          <Route path="/selectFormControls" component={SFC} />
           <Route component={NotFoundPage} />
         </Switch>
       </div>
