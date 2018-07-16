@@ -9,6 +9,8 @@ import { editUser } from '../backend/mutations';
 import { User } from '../backend/queries';
 import { isEmpty } from '../utils/helpers';
 
+import { userEditExclude } from '../forms/exclude.json';
+
 class UserEditModal extends Component {
   constructor(props) {
     super(props);
@@ -133,6 +135,7 @@ class UserEditModal extends Component {
                     <DynamicForm // configure the form  controls
                       model={signupForm}
                       valueData={this.state.valueData}
+                      exclude={userEditExclude}
                       groups={1} // groups will be 1 to 4 only 1=col-md-12,  2= col-md-6 , 3=col-md-4  4= col-md-3
                       columns="col-md-12"
                       ref={node => (this.dynForm = node)}

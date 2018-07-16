@@ -8,49 +8,16 @@ import withData from '../backend/withData';
 import { addUser } from '../backend/mutations';
 // import { Role } from '../backend/queries';
 
-var model;
 class SFC extends Component {
   constructor(props) {
     super(props);
     // console.log("in LoginView constructor");
     this.state = {
       submitted: false,
-      errors: []
-      // roles:[]
+      errors: [],
+      valueData: {}
     };
   } // end of constructor
-
-  excludeFormControls = (key, type) => {
-    var isExclude;
-    // console.log('exclude(params) :', key, type);
-    //   signupFormExclude.map((m, indx) => (m.key === key && m.type === type)?isExclude = m.key:'');
-    signupFormExclude.map((m, indx) => {
-      if (m.key === key && m.type === type) {
-        console.log('exclude :', m);
-        isExclude = m.key;
-      }
-      return isExclude;
-    });
-    return isExclude;
-  };
-
-  newModel = () => {
-    let model = signupForm;
-    model = signupForm.filter(item => {
-      // remove item from array
-      if (signupFormExclude !== undefined) {
-        return item.key !== this.excludeFormControls(item.key, item.type);
-      } else {
-        return item.key;
-      }
-    });
-    return model;
-  };
-
-  componentWillMount() {
-    model = this.newModel();
-    model.map(m => console.log('new model :', m));
-  }
 
   reload = () => {
     this.forceUpdate();
@@ -83,16 +50,14 @@ class SFC extends Component {
     }
   };
   addUserAsPromise = (addUser, data) => {
-    console.log('addUserAsPromise...', data);
-    this.mutateData(addUser, {
-      name: data.name === undefined ? 'undefined' : data.name,
-      email: data.email === undefined ? 'undefined' : data.email,
-      password: data.password === undefined ? 'undefined' : data.password,
-      cellNumber: data.cellNumber === undefined ? 'undefined' : data.cellNumber,
-      roles: data.roles === undefined ? ['Capturer'] : data.roles
-    }) // return a promise
+    signupFormExclude.map((m, indx) => {
+      data[m.key] = m.default;
+    });
+    console.log(data);
+
+    this.mutateData(addUser, data) // return a promise
       .then(result => {
-        console.log('addUser :', result.data);
+        // console.log('addUser :', result.data);
         this.props.history.push('/dashboard'); // programatically routing
       })
       .catch(res => {
@@ -116,7 +81,9 @@ class SFC extends Component {
                   </div>
 
                   <DynamicForm // configure the form  controls
-                    model={model}
+                    model={signupForm}
+                    valueData={this.state.valueData}
+                    exclude={signupFormExclude}
                     groups={1} // groups will be 1 to 4 only 1=col-md-12,  2= col-md-6 , 3=col-md-4  4= col-md-3
                     columns="col-md-12"
                     ref={node => (this.dynForm = node)}

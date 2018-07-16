@@ -28,15 +28,22 @@ export class DynamicForm extends Component {
   constructor(props) {
     super(props);
     // console.log("Constructor DynamicForm");
+    var model = {};
+    if (this.props.exclude !== undefined) {
+      model = this.newModel();
+    } else {
+      model = this.props.model;
+    }
     this.state = {
       validationErrors: {},
       fieldValidations: [],
       fields: this.props.valueData === undefined ? {} : this.props.valueData,
-      stage: 'Initial'
+      stage: 'Initial',
+      model: model
     };
 
     //console.log("Props Iterator");
-    this.props.model.map((row, idx) => {
+    this.state.model.map((row, idx) => {
       // row = each formControl , idx=index
       //   console.log("key :",row,row.label," - validations : ",row.fieldValidations);
       if (row.fieldValidations) {
@@ -111,33 +118,32 @@ export class DynamicForm extends Component {
     });
   } // end of constructor
 
-  /* // remove this code after discusion with Suresh 
-
-  excludeFormControls = (key, type) => {
+  excludeFormControls = key => {
     var isExclude;
     // console.log('exclude(params) :', key, type);
+    //   signupFormExclude.map((m, indx) => (m.key === key && m.type === type)?isExclude = m.key:'');
     this.props.exclude.map((m, indx) => {
-      if (m.key === key && m.type === type) {
+      if (m.key === key) {
         // console.log('exclude :', m);
-        return (isExclude = m.key);
+        isExclude = m.key;
       }
+      return isExclude;
     });
     return isExclude;
   };
 
-	newModel = () => {
-		let model = this.props.model;
-		model = model.filter(item => {
-			// remove item from array
-			if (this.props.exclude !== undefined) {
-			  return item.key !== this.excludeFormControls(item.key, item.type);
-			} else {
-			  return item.key;
-			}
-		});
-		return model
-	}
-*/
+  newModel = () => {
+    let model;
+    model = this.props.model.filter(item => {
+      // remove item from array
+      if (this.props.exclude !== undefined) {
+        return item.key !== this.excludeFormControls(item.key);
+      } else {
+        return item.key;
+      }
+    });
+    return model;
+  };
 
   checkControls = key => {
     if (
@@ -227,7 +233,7 @@ export class DynamicForm extends Component {
 
   renderForm = () => {
     //   var model = this.newModel();   // remove this code after discusion with Suresh
-    let model = this.props.model;
+    let model = this.state.model;
     // model.map(m => console.log('new model :', m));
     const { groups, columns } = this.props;
 

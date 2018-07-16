@@ -17,7 +17,7 @@ export const Users = gql`
       password
       cellNumber
       roles {
-        ID: id
+        id
         name
       }
     }

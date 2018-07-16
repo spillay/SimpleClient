@@ -1,10 +1,17 @@
 export const signupFormExclude = [
   {
     key: 'roles',
-    type: 'checkbox'
+    default: ['Capturer']
   },
   {
     key: 'name',
-    type: 'text'
+    default: 'n/a'
+  }
+];
+
+export const userEditExclude = [
+  {
+    key: 'password',
+    default: 'n/a'
   }
 ];
