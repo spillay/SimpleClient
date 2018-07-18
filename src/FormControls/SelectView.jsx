@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
 
 export class SelectView extends Component {
   constructor(props) {
@@ -9,17 +10,13 @@ export class SelectView extends Component {
     };
   }
   componentDidMount() {
-    //$('.selectpicker').selectpicker()
+    $('.selectpicker').selectpicker();
   }
 
   onChange = e => {
-    // console.log("Select value: ", e.target.value);
-    this.setState({ dirty: true }, () => {
-      this.props.onChange(
-        { target: { value: e.target.value } },
-        this.props._key
-      );
-    });
+    console.log('Select value: ', e.target.value);
+    this.props.onChange({ target: { value: e.target.value } }, this.props._key);
+    this.setState({ dirty: true });
   };
 
   getClassName = () => {

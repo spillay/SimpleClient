@@ -43,6 +43,12 @@ class Header extends React.Component {
     return (
       <div>
         <li className="nav-item list-inline-item">
+          <Link to="/formControls" className="btn btn-info" replace>
+            Configuration...
+          </Link>
+        </li>
+
+        <li className="nav-item list-inline-item">
           <Link to="/selectFormControls" className="btn btn-info" replace>
             SFC
           </Link>

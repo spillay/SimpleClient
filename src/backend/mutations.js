@@ -35,6 +35,31 @@ export const addUser = gql`
     }
   }
 `;
+export const addFormControls = gql`
+  mutation AddFormControls(
+    $key: String!
+    $label: String!
+    $type: String!
+    $form: ID!
+  ) {
+    addFormControls(key: $key, label: $label, type: $type, form: $form) {
+      id
+      name
+      user {
+        name
+      }
+      controls {
+        id
+        key
+        label
+        type {
+          name
+        }
+      }
+    }
+  }
+`;
+
 export const editUser = gql`
   mutation EditUser(
     $ID: ID!

@@ -53,3 +53,34 @@ export const SearchUsersQuery = gql`
     }
   }
 `;
+
+export const Forms = gql`
+  {
+    getForms {
+      id
+      name
+      user {
+        name
+      }
+    }
+  }
+`;
+export const FormControlsListQuery = gql`
+  query FormById($ID: ID!) {
+    getFormById(_id: $ID) {
+      id
+      name
+      user {
+        name
+      }
+      controls {
+        id
+        key
+        label
+        type {
+          name
+        }
+      }
+    }
+  }
+`;

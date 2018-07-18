@@ -23,6 +23,68 @@ export const loginForm = [
   }
 ];
 
+export const formControlsForm = [
+  {
+    key: 'key',
+    label: 'Key',
+    type: 'text',
+    fieldValidations: {
+      required: true,
+      isString: true,
+      minLength: 3,
+      maxLength: 30
+    },
+    options: {
+      autoComplete: 'given-name',
+      placeholder: 'Key...',
+      icon: 'fa fa fa-user'
+    }
+  },
+  {
+    key: 'label',
+    label: 'Label',
+    type: 'text',
+    fieldValidations: {
+      required: true,
+      minLength: 3,
+      maxLength: 30
+    },
+    options: {
+      autoComplete: 'given-name',
+      placeholder: 'Label...',
+      icon: 'fa fa fa-user'
+    }
+  },
+  {
+    key: 'type',
+    label: 'Type',
+    type: 'select',
+    header: 'Type...',
+    opts: { autoComplete: 'family-name' },
+    options: [
+      { key: 'text', label: 'Text', value: 'text' },
+      { key: 'email', label: 'Email', value: 'email' },
+      { key: 'password', label: 'password', value: 'password' },
+      { key: 'number', label: 'Number', value: 'number' },
+      { key: 'textarea', label: 'Textarea', value: 'textarea' },
+      { key: 'select', label: 'Select', value: 'select' },
+      { key: 'range', label: 'Range', value: 'range' },
+      { key: 'radio', label: 'Radio', value: 'radio' },
+      { key: 'checkbox', label: 'Checkbox', value: 'checkbox' },
+      {
+        key: 'SingleDatePicker',
+        label: 'SingleDatePicker',
+        value: 'SingleDatePicker'
+      },
+      {
+        key: 'DateRangePicker',
+        label: 'DateRangePicker',
+        value: 'DateRangePicker'
+      }
+    ]
+  }
+];
+
 export const signupForm = [
   {
     key: 'roles',
