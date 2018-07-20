@@ -46,12 +46,16 @@ class AddFormControls extends Component {
       this.addFormControlsAsPromise(addFormControls, data); // signup mutation
     }
   };
-  addFormControlsAsPromise = (addFormControls, { key, label, type }) => {
+  addFormControlsAsPromise = (
+    addFormControls,
+    { key, label, type, mandatory }
+  ) => {
     this.mutateData(addFormControls, {
       key,
       label,
       type,
-      form: this.props.form.id
+      form: this.props.form.name,
+      mandatory
     }) // return a promise
       .then(result => {
         console.log('addFormControls :', result.data);

@@ -40,18 +40,23 @@ export const addFormControls = gql`
     $key: String!
     $label: String!
     $type: String!
-    $form: ID!
+    $form: String!
+    $mandatory: String!
   ) {
-    addFormControls(key: $key, label: $label, type: $type, form: $form) {
+    addFormControls(
+      key: $key
+      label: $label
+      type: $type
+      form: $form
+      mandatory: $mandatory
+    ) {
       id
       name
-      user {
-        name
-      }
       controls {
         id
         key
         label
+        mandatory
         type {
           name
         }

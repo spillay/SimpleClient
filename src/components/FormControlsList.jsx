@@ -10,6 +10,19 @@ class FormControlsList extends Component {
   typeFormatter = (cell, row, enumObject, rowIndex) => {
     return row.type.name;
   };
+  columnClassNameFormat = (fieldValue, row, rowIdx, colIdx) => {
+    // fieldValue is column value
+    // row is whole row object
+    // rowIdx is index of row
+    // colIdx is index of column
+    return fieldValue === 'yes' ? 'required-yes' : 'required-no';
+  };
+
+  rowClassNameFormat = (row, rowIdx) => {
+    // row is whole row object
+    // rowIdx is index of row
+    return row.mandatory === 'yes' ? 'required-yes' : 'required-no';
+  };
 
   render() {
     if (this.props.data === undefined) {
@@ -31,20 +44,20 @@ class FormControlsList extends Component {
             exportCSV={true}
             csvFileName="table-export"
             tableHeaderClass="custom-table-header"
+            trClassName={this.rowClassNameFormat}
           >
             <TableHeaderColumn
               dataField="id"
               isKey={true}
               dataSort={true}
               hidden
-              columnClassName="td-column"
             >
               ControlId
             </TableHeaderColumn>
             <TableHeaderColumn dataField="key" dataSort={true}>
               Key
             </TableHeaderColumn>
-            <TableHeaderColumn dataField="label" dataSort={true}>
+            <TableHeaderColumn dataField="label" dataSort={true} width="250">
               Label
             </TableHeaderColumn>
             <TableHeaderColumn
@@ -54,6 +67,9 @@ class FormControlsList extends Component {
             >
               Type
             </TableHeaderColumn>
+            <TableHeaderColumn dataField="mandatory" dataSort={true}>
+              mandatory
+            </TableHeaderColumn>
           </BootstrapTable>
         </div>
       );
@@ -62,3 +78,7 @@ class FormControlsList extends Component {
 } // end of FormControlsList
 
 export default withData(FormControlsList);
+
+/*
+columnClassName={ this.columnClassNameFormat }
+*/

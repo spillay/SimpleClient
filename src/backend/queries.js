@@ -59,24 +59,42 @@ export const Forms = gql`
     getForms {
       id
       name
-      user {
-        name
+    }
+  }
+`;
+
+export const FormControlsListQuery = gql`
+  query FormByName($name: String!) {
+    getFormByName(name: $name) {
+      id
+      name
+      controls {
+        id
+        key
+        label
+        mandatory
+        type {
+          name
+        }
       }
     }
   }
 `;
-export const FormControlsListQuery = gql`
-  query FormById($ID: ID!) {
-    getFormById(_id: $ID) {
-      id
-      name
+
+export const UserFormControlsListQuery = gql`
+  query GetUFC($user: ID!, $form: ID!) {
+    getUFC(user: $user, form: $form) {
       user {
+        name
+      }
+      form {
         name
       }
       controls {
         id
         key
         label
+        mandatory
         type {
           name
         }

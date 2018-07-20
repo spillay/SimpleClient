@@ -25,6 +25,17 @@ export const loginForm = [
 
 export const formControlsForm = [
   {
+    key: 'mandatory',
+    label: 'Mandatory',
+    type: 'radio',
+    fieldValidations: { required: true },
+    opts: { inline: true },
+    options: [
+      { key: 'yes', label: 'Yes', name: 'required', value: 'yes' },
+      { key: 'no', label: 'No', name: 'required', value: 'no' }
+    ]
+  },
+  {
     key: 'key',
     label: 'Key',
     type: 'text',

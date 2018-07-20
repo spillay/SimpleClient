@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard';
 import SearchUsers from './components/SearchUsers';
 import SFC from './components/SFC';
 import Configuration from './components/Configuration';
+import UFCConfiguration from './components/UFCConfiguration';
 
 /*
 Centralized  application routing configuration
@@ -27,6 +28,7 @@ class App extends Component {
           <Route path="/search" component={SearchUsers} />
           <Route path="/selectFormControls" component={SFC} />
           <Route path="/formControls" component={Configuration} />
+          <Route path="/userformControls" component={UFCConfiguration} />
           <Route component={NotFoundPage} />
         </Switch>
       </div>

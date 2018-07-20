@@ -29,24 +29,30 @@ class Configuration extends Component {
     });
   };
 
-  userFormatter = (cell, row, enumObject, rowIndex) => {
-    // console.log('roleFormatter :', row.roles)
-    return row.user.name;
-  };
+  //   userFormatter = (cell, row, enumObject, rowIndex) => {
+  //     // console.log('roleFormatter :', row.roles)
+  //     return row.user.name;
+  //   };
 
   handleRowSelect = (row, isSelected, e) => {
-    console.log(`is selected: ${isSelected}, FormId = ${row.id}`);
+    console.log(`is selected: ${isSelected}, FormId = ${row.name}`);
     this.setState({ isSelected });
-    this.getFormsControlsListAsPromise(row.id);
+    this.getFormsControlsListAsPromise(row.name);
   };
 
-  getFormsControlsListAsPromise = ID => {
-    this.readData(FormControlsListQuery, { ID }).then(result => {
+  getFormsControlsListAsPromise = name => {
+    this.readData(FormControlsListQuery, { name }).then(result => {
       // console.log('FormControlsList :', result);
-      this.setState({ gdata1: result.data.getFormById }, () => {
+      this.setState({ gdata1: result.data.getFormByName }, () => {
         this.forceUpdate();
       });
     });
+  };
+
+  rowClassNameFormat = (row, rowIdx) => {
+    // row is whole row object
+    // rowIdx is index of row
+    return 'tr-bt';
   };
 
   render() {
@@ -65,21 +71,15 @@ class Configuration extends Component {
         <div>
           <main role="main" className="container pt-7">
             <div className="row">
-              <div className="col-md-4">
+              <div className="col-md-2">
                 <BootstrapTable
                   data={this.state.gdata}
                   version="4"
                   hover={true}
-                  bordered={true}
+                  bordered={false}
                   condensed={true}
                   maxHeight="520px"
                   selectRow={selectRow}
-                  pagination={true}
-                  // options={options}
-                  search={true}
-                  searchPlaceholder="input something..."
-                  exportCSV={true}
-                  csvFileName="table-export"
                   tableHeaderClass="custom-table-header"
                 >
                   <TableHeaderColumn
@@ -87,25 +87,21 @@ class Configuration extends Component {
                     isKey={true}
                     dataSort={true}
                     hidden
-                    columnClassName="td-column"
                   >
                     FormId
                   </TableHeaderColumn>
-                  <TableHeaderColumn dataField="name" dataSort={true}>
-                    Form Name
-                  </TableHeaderColumn>
                   <TableHeaderColumn
-                    dataField="user.name"
+                    dataField="name"
                     dataSort={true}
-                    dataFormat={this.userFormatter}
+                    columnClassName="td-column-formname"
                   >
-                    User Name
+                    Form Name
                   </TableHeaderColumn>
                 </BootstrapTable>
               </div>
 
               {this.state.isSelected && (
-                <div className="col-md-4">
+                <div className="col-md-6">
                   <FormControlsList data={this.state.gdata1} />
                 </div>
               )}
