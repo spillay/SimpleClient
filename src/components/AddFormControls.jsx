@@ -54,13 +54,12 @@ class AddFormControls extends Component {
       key,
       label,
       type,
-      form: this.props.form.name,
+      form: this.props.form,
       mandatory
     }) // return a promise
       .then(result => {
         console.log('addFormControls :', result.data);
         this.setState({ message: 'Success.....' });
-        // this.props.history.push('/formControls'); // programatically routing
       })
       .catch(res => {
         const errors = res.graphQLErrors.map(error => error.message);
@@ -69,6 +68,7 @@ class AddFormControls extends Component {
   };
 
   render() {
+    //   console.log('form:',this.props.form)
     return (
       <div className="row">
         <div className="col-md-6">

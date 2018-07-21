@@ -36,7 +36,7 @@ class Configuration extends Component {
 
   handleRowSelect = (row, isSelected, e) => {
     console.log(`is selected: ${isSelected}, FormId = ${row.name}`);
-    this.setState({ isSelected });
+    this.setState({ isSelected, form: row.name });
     this.getFormsControlsListAsPromise(row.name);
   };
 
@@ -108,7 +108,7 @@ class Configuration extends Component {
 
               {this.state.isSelected && (
                 <div className="col-md-4">
-                  <AddFormControls form={this.state.gdata1} />
+                  <AddFormControls form={this.state.form} />
                 </div>
               )}
             </div>
