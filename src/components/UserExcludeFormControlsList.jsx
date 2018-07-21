@@ -92,9 +92,9 @@ class UserExcludeFormControlsList extends Component {
           <form onSubmit={this.handleSubmit}>
             {content}
             <div className="row">
-              <div className="col-md-4 ">
-                <button className="btn btn-primary btn-block">
-                  Submit....
+              <div className="col-md-6 ">
+                <button className="btn btn-outline-primary btn-block">
+                  Include / Exclude....
                 </button>
               </div>
             </div>

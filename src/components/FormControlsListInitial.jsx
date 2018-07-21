@@ -95,8 +95,8 @@ class FormControlsListInitial extends Component {
             {content}
             <div className="row">
               <div className="col-md-4 ">
-                <button className="btn btn-primary btn-block">
-                  Submit....
+                <button className="btn btn-outline-primary btn-block">
+                  Add....
                 </button>
               </div>
             </div>
