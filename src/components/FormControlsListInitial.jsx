@@ -13,7 +13,7 @@ class FormControlsListInitial extends Component {
     if (this.props.data !== undefined) {
       this.props.data.controls.map((row, idx) => {
         //   console.log('row.id :',row.id)
-        if (row.required === 'yes') {
+        if (row.mandatory === 'yes') {
           this.state.selected.push(row.id); // add item into array
         }
       });
@@ -62,13 +62,16 @@ class FormControlsListInitial extends Component {
               type="checkbox"
               key={row.id}
               name={row.id}
-              disabled={row.required === 'yes'}
+              disabled={row.mandatory === 'yes'}
               onChange={e => {
                 this.onChange(e);
               }}
             />
             <span className="custom-control-indicator" />
-            <span className="custom-control-label "> {row.label}</span>
+            <span className="custom-control-label ">
+              {' '}
+              {row.label} (<code>{row.type.name}</code>)
+            </span>
           </label>
         </div>
       ));
@@ -79,7 +82,15 @@ class FormControlsListInitial extends Component {
     } else {
       return (
         <div>
-          {this.props.data.name} <p>Source FormControls</p>
+          <span className="badge badge-secondary">{this.props.data.name} </span>
+          <div className="row">
+            <div className="col-md-12">
+              <div className="alert alert-secondary" role="alert">
+                Master Form Controls.....
+              </div>
+            </div>
+          </div>
+
           <form onSubmit={this.handleSubmit}>
             {content}
             <div className="row">

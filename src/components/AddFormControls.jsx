@@ -72,7 +72,10 @@ class AddFormControls extends Component {
     return (
       <div className="row">
         <div className="col-md-6">
-          {this.state.message}
+          {this.state.message !== undefined && (
+            <span className="badge badge-success">{this.state.message}</span>
+          )}
+
           <form onSubmit={this.handleSubmit}>
             <ErrorBoundary>
               <div className="error-messages">

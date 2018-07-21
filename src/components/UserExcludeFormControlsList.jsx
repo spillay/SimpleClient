@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import withData from '../backend/withData';
 
-class UserFormControlsList extends Component {
+class UserExcludeFormControlsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,7 +47,7 @@ class UserFormControlsList extends Component {
   };
 
   render() {
-    // console.log('FormControlsListInitial :', this.props.data);
+    // console.log('UserExcludeFormControlsList :', this.props.data);
     // console.log('render :',this.state)
     var content;
     if (this.props.data !== undefined) {
@@ -79,7 +79,16 @@ class UserFormControlsList extends Component {
     } else {
       return (
         <div>
-          <p>User Configured FormControls</p>
+          <span className="badge badge-success">
+            {this.props.data.user.email}{' '}
+          </span>
+          <div className="row">
+            <div className="col-md-12">
+              <div className="alert alert-secondary" role="alert">
+                User Configuration FormControls.....
+              </div>
+            </div>
+          </div>
           <form onSubmit={this.handleSubmit}>
             {content}
             <div className="row">
@@ -96,4 +105,4 @@ class UserFormControlsList extends Component {
   }
 } // end of UserFormControlsList
 
-export default withData(UserFormControlsList);
+export default withData(UserExcludeFormControlsList);

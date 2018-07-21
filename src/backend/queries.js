@@ -66,10 +66,8 @@ export const Forms = gql`
 export const FormControlsListQuery = gql`
   query FormByName($name: String!) {
     getFormByName(name: $name) {
-      id
       name
       controls {
-        id
         key
         label
         mandatory
@@ -82,16 +80,15 @@ export const FormControlsListQuery = gql`
 `;
 
 export const UserFormControlsListQuery = gql`
-  query GetUFC($user: ID!, $form: ID!) {
+  query GetUFC($user: String!, $form: String!) {
     getUFC(user: $user, form: $form) {
       user {
-        name
+        email
       }
       form {
         name
       }
       controls {
-        id
         key
         label
         mandatory

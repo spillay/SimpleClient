@@ -3,7 +3,7 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import withData from '../backend/withData';
 import { Forms } from '../backend/queries';
 import FormControlsListInitial from './FormControlsListInitial';
-import UserFormControlsList from './UserFormControlsList';
+import UserExcludeFormControlsList from './UserExcludeFormControlsList';
 import {
   FormControlsListQuery,
   UserFormControlsListQuery
@@ -35,46 +35,44 @@ class UFCConfiguration extends Component {
   };
 
   handleRowSelect = (row, isSelected, e) => {
-    // console.log(`is selected: ${isSelected}, FormId = ${row.id}`);
+    console.log(`is selected: ${isSelected}, FormId = ${row.name}`);
     this.setState({ isSelected });
-    this.getFormsControlsListAsPromise(row.id);
-    this.getUserFormsControlsListAsPromise('5b45dc3679aaba23a09092a4', row.id);
-    this.getDataMerge();
+    this.getFormsControlsListAsPromise(row.name);
+    this.getUserFormsControlsListAsPromise('bhaskarv20@gmail.com', row.name);
+    // this.getDataMerge();
   };
 
-  getFormsControlsListAsPromise = ID => {
-    this.readData(FormControlsListQuery, { ID }).then(result => {
-      // console.log('FormControlsList :', result);
-      this.setState({ gdata1: result.data.getFormById }, () => {
-        this.forceUpdate();
+  getFormsControlsListAsPromise = name => {
+    this.readData(FormControlsListQuery, { name }).then(result => {
+      this.setState({ gdata1: result.data.getFormByName }, () => {
+        // this.forceUpdate();
       });
     });
+    this.forceUpdate();
   };
 
   getUserFormsControlsListAsPromise = (user, form) => {
     this.readData(UserFormControlsListQuery, { user, form }).then(result => {
-      // console.log('FormControlsList :', result);
-      this.setState({ gdata2: result.data.getUFC }, () => {
-        this.forceUpdate();
-      });
+      this.setState({ gdata2: result.data.getUFC }, () => {});
     });
+    this.forceUpdate();
   };
 
-  getDataMerge = () => {
-    // console.log('gdata1 :',this.state.gdata1,'gdata2 :',this.state.gdata2)
-    if (this.state.gdata1 !== undefined) {
-      this.setState(
-        {
-          controls: this.state.gdata1.controls.filter(g1 => {
-            return g1.id !== '5b5043c7319b8e2540194cea';
-          })
-        },
-        () => {
-          console.log('state :', this.state);
-        }
-      );
-    }
-  };
+  //   getDataMerge = () => {
+  //     // console.log('gdata1 :',this.state.gdata1,'gdata2 :',this.state.gdata2)
+  //     if (this.state.gdata1 !== undefined) {
+  //       this.setState(
+  //         {
+  //           controls: this.state.gdata1.controls.filter(g1 => {
+  //             return g1.id !== '5b5043c7319b8e2540194cea';
+  //           })
+  //         },
+  //         () => {
+  //           console.log('state :', this.state);
+  //         }
+  //       );
+  //     }
+  //   };
 
   render() {
     const selectRow = {
@@ -91,6 +89,14 @@ class UFCConfiguration extends Component {
       return (
         <div>
           <main role="main" className="container pt-7">
+            <div className="row">
+              <div className="col-md-12">
+                <div className="alert alert-primary" role="alert">
+                  User Form Controls Configuration.....
+                </div>{' '}
+              </div>{' '}
+            </div>
+
             <div className="row">
               <div className="col-md-4">
                 <BootstrapTable
@@ -123,15 +129,15 @@ class UFCConfiguration extends Component {
                 </BootstrapTable>
               </div>
               {this.state.isSelected &&
-                this.state.controls !== undefined && (
+                !!this.state.gdata1 && (
                   <div className="col-md-4">
-                    <FormControlsListInitial data={this.state} />
+                    <FormControlsListInitial data={this.state.gdata1} />
                   </div>
                 )}
               {this.state.isSelected &&
-                this.state.gdata2 !== undefined && (
+                !!this.state.gdata2 && (
                   <div className="col-md-4">
-                    <UserFormControlsList data={this.state.gdata2} />
+                    <UserExcludeFormControlsList data={this.state.gdata2} />
                   </div>
                 )}
             </div>

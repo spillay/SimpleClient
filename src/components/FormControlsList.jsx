@@ -30,7 +30,8 @@ class FormControlsList extends Component {
     } else {
       return (
         <div>
-          {this.props.data.name}
+          <span className="badge badge-secondary">{this.props.data.name}</span>
+
           <BootstrapTable
             data={this.props.data.controls}
             version="4"
@@ -46,15 +47,7 @@ class FormControlsList extends Component {
             tableHeaderClass="custom-table-header"
             trClassName={this.rowClassNameFormat}
           >
-            <TableHeaderColumn
-              dataField="id"
-              isKey={true}
-              dataSort={true}
-              hidden
-            >
-              ControlId
-            </TableHeaderColumn>
-            <TableHeaderColumn dataField="key" dataSort={true}>
+            <TableHeaderColumn dataField="key" isKey={true} dataSort={true}>
               Key
             </TableHeaderColumn>
             <TableHeaderColumn dataField="label" dataSort={true} width="250">

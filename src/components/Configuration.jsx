@@ -71,6 +71,14 @@ class Configuration extends Component {
         <div>
           <main role="main" className="container pt-7">
             <div className="row">
+              <div className="col-md-12">
+                <div className="alert alert-primary" role="alert">
+                  Master Form Controls Configuration.....
+                </div>{' '}
+              </div>{' '}
+            </div>
+
+            <div className="row">
               <div className="col-md-2">
                 <BootstrapTable
                   data={this.state.gdata}
@@ -100,17 +108,19 @@ class Configuration extends Component {
                 </BootstrapTable>
               </div>
 
-              {this.state.isSelected && (
-                <div className="col-md-6">
-                  <FormControlsList data={this.state.gdata1} />
-                </div>
-              )}
+              {this.state.isSelected &&
+                !!this.state.gdata1 && (
+                  <div className="col-md-6">
+                    <FormControlsList data={this.state.gdata1} />
+                  </div>
+                )}
 
-              {this.state.isSelected && (
-                <div className="col-md-4">
-                  <AddFormControls form={this.state.form} />
-                </div>
-              )}
+              {this.state.isSelected &&
+                !!this.state.form && (
+                  <div className="col-md-4">
+                    <AddFormControls form={this.state.form} />
+                  </div>
+                )}
             </div>
           </main>
         </div>
