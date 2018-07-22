@@ -98,7 +98,7 @@ class UFCConfiguration extends Component {
             </div>
 
             <div className="row">
-              <div className="col-md-4">
+              <div className="col-md-4 border-right border-info">
                 <BootstrapTable
                   data={this.state.gdata}
                   version="4"
@@ -115,15 +115,10 @@ class UFCConfiguration extends Component {
                   tableHeaderClass="custom-table-header"
                 >
                   <TableHeaderColumn
-                    dataField="id"
-                    isKey={true}
+                    dataField="name"
                     dataSort={true}
-                    hidden
-                    columnClassName="td-column"
+                    isKey={true}
                   >
-                    FormId
-                  </TableHeaderColumn>
-                  <TableHeaderColumn dataField="name" dataSort={true}>
                     Form Name
                   </TableHeaderColumn>
                 </BootstrapTable>

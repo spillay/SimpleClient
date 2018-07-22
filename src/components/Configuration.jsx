@@ -79,7 +79,7 @@ class Configuration extends Component {
             </div>
 
             <div className="row">
-              <div className="col-md-2">
+              <div className="col-md-2 border-right border-info">
                 <BootstrapTable
                   data={this.state.gdata}
                   version="4"
@@ -91,15 +91,8 @@ class Configuration extends Component {
                   tableHeaderClass="custom-table-header"
                 >
                   <TableHeaderColumn
-                    dataField="id"
-                    isKey={true}
-                    dataSort={true}
-                    hidden
-                  >
-                    FormId
-                  </TableHeaderColumn>
-                  <TableHeaderColumn
                     dataField="name"
+                    isKey={true}
                     dataSort={true}
                     columnClassName="td-column-formname"
                   >
