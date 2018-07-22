@@ -109,7 +109,7 @@ export const GetAllUFC = gql`
       form {
         form: name
       }
-      controls {
+      exclude: controls {
         key
         label
         mandatory
