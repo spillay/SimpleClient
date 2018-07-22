@@ -99,3 +99,24 @@ export const UserFormControlsListQuery = gql`
     }
   }
 `;
+
+export const GetAllUFC = gql`
+  query GetAllUFC($user: String!) {
+    getAllUFC(user: $user) {
+      user {
+        username: email
+      }
+      form {
+        form: name
+      }
+      controls {
+        key
+        label
+        mandatory
+        type {
+          type: name
+        }
+      }
+    }
+  }
+`;
