@@ -61,7 +61,7 @@ class FormControlsList extends Component {
               Type
             </TableHeaderColumn>
             <TableHeaderColumn dataField="mandatory" dataSort={true}>
-              mandatory
+              Mandatory
             </TableHeaderColumn>
           </BootstrapTable>
         </div>

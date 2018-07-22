@@ -10,7 +10,8 @@ class FormControlsListInitial extends Component {
       submitted: false,
       errors: [],
       valueData: {},
-      message: ''
+      message: '',
+      isButtonDisabled: true
     };
   } // end of constructor
 
@@ -39,21 +40,22 @@ class FormControlsListInitial extends Component {
 
   /* this method will send true or false to manage button disable beviour */
   isButtonEnable = () => {
-    console.log('isButtonEnable calling :');
     if (this.state.selected.length === 0) {
-      return true;
+      this.setState({ isButtonDisabled: true });
     } else {
-      return false;
+      this.setState({ isButtonDisabled: false });
     }
   };
 
   onChange = e => {
-    console.log('Key-checked :', e.target.name);
-    console.log('e.target.checked :', e.target.checked);
+    // console.log('Key-checked :', e.target.name);
+    // console.log('e.target.checked :', e.target.checked);
 
     if (e.target.checked === true) {
       this.state.selected.push(e.target.name); // add item into array
-      console.log('checked === true :', this.state.selected);
+      this.isButtonEnable();
+
+      //   console.log('checked === true :', this.state.selected);
     }
     if (e.target.checked === false) {
       this.setState(
@@ -63,7 +65,8 @@ class FormControlsListInitial extends Component {
           )
         },
         () => {
-          console.log('checked === false :', this.state.selected);
+          this.isButtonEnable();
+          //   console.log('checked === false :', this.state.selected);
         }
       );
     }
@@ -71,7 +74,6 @@ class FormControlsListInitial extends Component {
 
   render() {
     // console.log('FormControlsListInitial :', this.props,);
-    console.log('render :', this.state.selected.length);
     var content;
     if (this.props.data !== undefined) {
       content = this.props.data.controls.map((row, idx) => (
@@ -132,7 +134,7 @@ class FormControlsListInitial extends Component {
               <div className="col-md-4 ">
                 <button
                   className="btn btn-outline-primary btn-block"
-                  disabled={this.isButtonEnable()}
+                  disabled={this.state.isButtonDisabled}
                 >
                   Add....
                 </button>

@@ -6,7 +6,8 @@ class UserExcludeFormControlsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: []
+      selected: [],
+      isButtonDisabled: true
     };
   } // end of constructor
 
@@ -34,11 +35,10 @@ class UserExcludeFormControlsList extends Component {
 
   /* this method will send true or false to manage button disable beviour */
   isButtonEnable = () => {
-    console.log('isButtonEnable calling :');
     if (this.state.selected.length === 0) {
-      return true;
+      this.setState({ isButtonDisabled: true });
     } else {
-      return false;
+      this.setState({ isButtonDisabled: false });
     }
   };
 
@@ -49,6 +49,7 @@ class UserExcludeFormControlsList extends Component {
     if (e.target.checked === true) {
       this.state.selected.push(e.target.name); // add item into array
       // console.log('checked === true :',this.state)
+      this.isButtonEnable();
     }
     if (e.target.checked === false) {
       this.setState(
@@ -58,6 +59,7 @@ class UserExcludeFormControlsList extends Component {
           )
         },
         () => {
+          this.isButtonEnable();
           //   console.log('checked === false :', this.state)
         }
       );
@@ -122,7 +124,7 @@ class UserExcludeFormControlsList extends Component {
               <div className="col-md-6 ">
                 <button
                   className="btn btn-outline-primary btn-block"
-                  disabled={this.isButtonEnable()}
+                  disabled={this.state.isButtonDisabled}
                 >
                   Include / Exclude....
                 </button>
