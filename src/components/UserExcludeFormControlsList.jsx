@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import withData from '../backend/withData';
+import { removeUFC } from '../backend/mutations';
 
 class UserExcludeFormControlsList extends Component {
   constructor(props) {
@@ -8,22 +9,39 @@ class UserExcludeFormControlsList extends Component {
       selected: []
     };
   } // end of constructor
-  componentWillMount() {
-    // console.log('componentWillMount :',this.props.data)
-    if (this.props.data !== undefined) {
-      this.props.data.controls.map((row, idx) => {
-        //   console.log('row.id :',row.id)
-        if (row.required === 'yes') {
-          this.state.selected.push(row.id); // add item into array
-        }
-      });
-    }
-  }
 
   handleSubmit = e => {
     e.preventDefault();
     console.log('handleSubmit:', this.state);
+    this.removeUserFormControlsAsPromise(removeUFC, {
+      user: this.props.user,
+      form: this.props.form,
+      controls: this.state.selected
+    }); //  mutation
   };
+
+  removeUserFormControlsAsPromise = (removeUFC, { user, form, controls }) => {
+    this.mutateData(removeUFC, { user, form, controls }) // return a promise
+      .then(result => {
+        console.log('UserExcludeFormControlsList :', result.data);
+        this.setState({ message: 'Success.....' });
+      })
+      .catch(res => {
+        const errors = res.graphQLErrors.map(error => error.message);
+        this.setState({ errors });
+      });
+  };
+
+  /* this method will send true or false to manage button disable beviour */
+  isButtonEnable = () => {
+    console.log('isButtonEnable calling :');
+    if (this.state.selected.length === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   onChange = e => {
     // console.log('Key-checked :',e.target.name);
     // console.log('e.target.checked :', e.target.checked);
@@ -60,8 +78,8 @@ class UserExcludeFormControlsList extends Component {
             <input
               className="custom-control-input"
               type="checkbox"
-              key={row.id}
-              name={row.id}
+              key={row.key}
+              name={row.key}
               disabled={row.required === 'yes'}
               onChange={e => {
                 this.onChange(e);
@@ -79,8 +97,17 @@ class UserExcludeFormControlsList extends Component {
     } else {
       return (
         <div>
+          <div className="row">
+            <div className="col-md-6">
+              {this.state.message !== undefined && (
+                <span className="badge badge-success">
+                  {this.state.message}
+                </span>
+              )}
+            </div>
+          </div>
           <span className="badge badge-success">
-            {this.props.data.user.email}{' '}
+            {this.props.data.user.email}
           </span>
           <div className="row">
             <div className="col-md-12">
@@ -93,7 +120,10 @@ class UserExcludeFormControlsList extends Component {
             {content}
             <div className="row">
               <div className="col-md-6 ">
-                <button className="btn btn-outline-primary btn-block">
+                <button
+                  className="btn btn-outline-primary btn-block"
+                  disabled={this.isButtonEnable()}
+                >
                   Include / Exclude....
                 </button>
               </div>

@@ -1,36 +1,59 @@
 import React, { Component } from 'react';
 import withData from '../backend/withData';
+import { addUFC } from '../backend/mutations';
 
 class FormControlsListInitial extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: []
+      selected: [],
+      submitted: false,
+      errors: [],
+      valueData: {},
+      message: ''
     };
   } // end of constructor
-  componentWillMount() {
-    // console.log('componentWillMount :',this.props.data)
-    if (this.props.data !== undefined) {
-      this.props.data.controls.map((row, idx) => {
-        //   console.log('row.id :',row.id)
-        if (row.mandatory === 'yes') {
-          this.state.selected.push(row.id); // add item into array
-        }
-      });
-    }
-  }
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log('handleSubmit:', this.state);
+    this.setState({ submitted: true });
+    //   console.log('handleSubmit:', this.state);
+    this.addUserFormControlsAsPromise(addUFC, {
+      user: this.props.user,
+      form: this.props.form,
+      controls: this.state.selected
+    }); //  mutation
   };
+
+  addUserFormControlsAsPromise = (addUFC, { user, form, controls }) => {
+    this.mutateData(addUFC, { user, form, controls }) // return a promise
+      .then(result => {
+        // console.log('addFormControls :', result.data);
+        this.setState({ message: 'Success.....' });
+      })
+      .catch(res => {
+        const errors = res.graphQLErrors.map(error => error.message);
+        this.setState({ errors });
+      });
+  };
+
+  /* this method will send true or false to manage button disable beviour */
+  isButtonEnable = () => {
+    console.log('isButtonEnable calling :');
+    if (this.state.selected.length === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   onChange = e => {
-    // console.log('Key-checked :',e.target.name);
-    // console.log('e.target.checked :', e.target.checked);
+    console.log('Key-checked :', e.target.name);
+    console.log('e.target.checked :', e.target.checked);
 
     if (e.target.checked === true) {
       this.state.selected.push(e.target.name); // add item into array
-      // console.log('checked === true :',this.state)
+      console.log('checked === true :', this.state.selected);
     }
     if (e.target.checked === false) {
       this.setState(
@@ -40,15 +63,15 @@ class FormControlsListInitial extends Component {
           )
         },
         () => {
-          //   console.log('checked === false :', this.state)
+          console.log('checked === false :', this.state.selected);
         }
       );
     }
   };
 
   render() {
-    // console.log('FormControlsListInitial :', this.props.data);
-    // console.log('render :',this.state)
+    // console.log('FormControlsListInitial :', this.props,);
+    console.log('render :', this.state.selected.length);
     var content;
     if (this.props.data !== undefined) {
       content = this.props.data.controls.map((row, idx) => (
@@ -60,8 +83,8 @@ class FormControlsListInitial extends Component {
             <input
               className="custom-control-input"
               type="checkbox"
-              key={row.id}
-              name={row.id}
+              key={row.key}
+              name={row.key}
               disabled={row.mandatory === 'yes'}
               onChange={e => {
                 this.onChange(e);
@@ -82,6 +105,15 @@ class FormControlsListInitial extends Component {
     } else {
       return (
         <div>
+          <div className="row">
+            <div className="col-md-6">
+              {this.state.message !== undefined && (
+                <span className="badge badge-success">
+                  {this.state.message}
+                </span>
+              )}
+            </div>
+          </div>
           <span className="badge badge-secondary">{this.props.data.name} </span>
           <div className="row">
             <div className="col-md-12">
@@ -92,10 +124,16 @@ class FormControlsListInitial extends Component {
           </div>
 
           <form onSubmit={this.handleSubmit}>
+            <div className="error-messages">
+              {this.state.errors.map(error => <div key={error}>{error}</div>)}
+            </div>
             {content}
             <div className="row">
               <div className="col-md-4 ">
-                <button className="btn btn-outline-primary btn-block">
+                <button
+                  className="btn btn-outline-primary btn-block"
+                  disabled={this.isButtonEnable()}
+                >
                   Add....
                 </button>
               </div>

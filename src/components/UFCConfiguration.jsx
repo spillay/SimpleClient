@@ -36,7 +36,7 @@ class UFCConfiguration extends Component {
 
   handleRowSelect = (row, isSelected, e) => {
     console.log(`is selected: ${isSelected}, FormId = ${row.name}`);
-    this.setState({ isSelected });
+    this.setState({ isSelected, form: row.name });
     this.getFormsControlsListAsPromise(row.name);
     this.getUserFormsControlsListAsPromise('bhaskarv20@gmail.com', row.name);
     // this.getDataMerge();
@@ -131,13 +131,21 @@ class UFCConfiguration extends Component {
               {this.state.isSelected &&
                 !!this.state.gdata1 && (
                   <div className="col-md-4">
-                    <FormControlsListInitial data={this.state.gdata1} />
+                    <FormControlsListInitial
+                      data={this.state.gdata1}
+                      user="bhaskarv20@gmail.com"
+                      form={this.state.form}
+                    />
                   </div>
                 )}
               {this.state.isSelected &&
                 !!this.state.gdata2 && (
                   <div className="col-md-4">
-                    <UserExcludeFormControlsList data={this.state.gdata2} />
+                    <UserExcludeFormControlsList
+                      data={this.state.gdata2}
+                      user="bhaskarv20@gmail.com"
+                      form={this.state.form}
+                    />
                   </div>
                 )}
             </div>

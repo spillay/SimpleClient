@@ -92,3 +92,45 @@ export const deleteUser = gql`
     }
   }
 `;
+
+export const addUFC = gql`
+  mutation AddUFC($user: String!, $form: String!, $controls: [String!]!) {
+    addUFC(user: $user, form: $form, controls: $controls) {
+      user {
+        name
+      }
+      form {
+        name
+      }
+      controls {
+        key
+        label
+        type {
+          name
+        }
+        mandatory
+      }
+    }
+  }
+`;
+
+export const removeUFC = gql`
+  mutation RemoveUFC($user: String!, $form: String!, $controls: [String!]!) {
+    removeUFC(user: $user, form: $form, controls: $controls) {
+      user {
+        name
+      }
+      form {
+        name
+      }
+      controls {
+        key
+        label
+        type {
+          name
+        }
+        mandatory
+      }
+    }
+  }
+`;
