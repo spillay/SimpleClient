@@ -42,8 +42,8 @@ class UFCConfiguration extends Component {
     // this.getDataMerge();
   };
 
-  getFormsControlsListAsPromise = name => {
-    this.readData(FormControlsListQuery, { name }).then(result => {
+  getFormsControlsListAsPromise = form => {
+    this.readData(FormControlsListQuery, { name: form }).then(result => {
       this.setState({ gdata1: result.data.getFormByName }, () => {
         // this.forceUpdate();
       });
@@ -57,22 +57,6 @@ class UFCConfiguration extends Component {
     });
     this.forceUpdate();
   };
-
-  //   getDataMerge = () => {
-  //     // console.log('gdata1 :',this.state.gdata1,'gdata2 :',this.state.gdata2)
-  //     if (this.state.gdata1 !== undefined) {
-  //       this.setState(
-  //         {
-  //           controls: this.state.gdata1.controls.filter(g1 => {
-  //             return g1.id !== '5b5043c7319b8e2540194cea';
-  //           })
-  //         },
-  //         () => {
-  //           console.log('state :', this.state);
-  //         }
-  //       );
-  //     }
-  //   };
 
   render() {
     const selectRow = {
@@ -93,8 +77,8 @@ class UFCConfiguration extends Component {
               <div className="col-md-12">
                 <div className="alert alert-primary" role="alert">
                   User Form Controls Configuration.....
-                </div>{' '}
-              </div>{' '}
+                </div>
+              </div>
             </div>
 
             <div className="row">

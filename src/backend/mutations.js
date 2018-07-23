@@ -50,16 +50,12 @@ export const addFormControls = gql`
       form: $form
       mandatory: $mandatory
     ) {
-      id
       name
       controls {
-        id
         key
         label
         mandatory
-        type {
-          name
-        }
+        type
       }
     }
   }
@@ -105,9 +101,7 @@ export const addUFC = gql`
       controls {
         key
         label
-        type {
-          name
-        }
+        type
         mandatory
       }
     }
@@ -126,9 +120,7 @@ export const removeUFC = gql`
       controls {
         key
         label
-        type {
-          name
-        }
+        type
         mandatory
       }
     }

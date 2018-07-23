@@ -53,11 +53,7 @@ class FormControlsList extends Component {
             <TableHeaderColumn dataField="label" dataSort={true} width="250">
               Label
             </TableHeaderColumn>
-            <TableHeaderColumn
-              dataField="type.name"
-              dataSort={true}
-              dataFormat={this.typeFormatter}
-            >
+            <TableHeaderColumn dataField="type" dataSort={true}>
               Type
             </TableHeaderColumn>
             <TableHeaderColumn dataField="mandatory" dataSort={true}>

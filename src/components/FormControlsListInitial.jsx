@@ -94,8 +94,7 @@ class FormControlsListInitial extends Component {
             />
             <span className="custom-control-indicator" />
             <span className="custom-control-label ">
-              {' '}
-              {row.label} (<code>{row.type.name}</code>)
+              {row.label} (<code>{row.type}</code>)
             </span>
           </label>
         </div>

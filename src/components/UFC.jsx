@@ -36,7 +36,14 @@ class UFC extends Component {
                     <div className="row">
                       <div className="col-md-12">
                         <img src={logo} width="2.1%" alt="" />
-                        <code> User Form Controls......</code>
+                        <code>
+                          {' '}
+                          User{' '}
+                          <span style={{ color: 'green' }}>
+                            <i>{'bhaskarv20@gmail.com'}</i>{' '}
+                          </span>{' '}
+                          Form Controls......
+                        </code>
                       </div>
                     </div>
                   </div>

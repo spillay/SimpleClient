@@ -57,7 +57,6 @@ export const SearchUsersQuery = gql`
 export const Forms = gql`
   {
     getForms {
-      id
       name
     }
   }
@@ -71,9 +70,7 @@ export const FormControlsListQuery = gql`
         key
         label
         mandatory
-        type {
-          name
-        }
+        type
       }
     }
   }
@@ -92,9 +89,7 @@ export const UserFormControlsListQuery = gql`
         key
         label
         mandatory
-        type {
-          name
-        }
+        type
       }
     }
   }
@@ -113,9 +108,7 @@ export const GetAllUFC = gql`
         key
         label
         mandatory
-        type {
-          type: name
-        }
+        type
       }
     }
   }
