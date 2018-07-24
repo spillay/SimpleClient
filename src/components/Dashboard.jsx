@@ -19,15 +19,6 @@ class Dashboard extends React.Component {
     this.getUsersAsPromise();
   }
 
-  componentDidUpdate() {
-    // this.getUsersAsPromise();
-    // console.log('componentDidUpdate...........',this.state.gdata)
-  }
-  componentWillUpdate() {
-    // this.getUsersAsPromise();
-    // console.log('componentWillUpdate...........')
-  }
-
   getUsersAsPromise = () => {
     this.readData(Users, {}).then(result => {
       console.log('Users :', result);
@@ -220,20 +211,18 @@ class Dashboard extends React.Component {
               tableHeaderClass="custom-table-header"
             >
               <TableHeaderColumn
-                dataField="userId"
                 isKey={true}
+                dataField="email"
                 dataSort={true}
-                width="220"
                 columnClassName="td-column"
+                width="180"
               >
-                userId
+                User Name
               </TableHeaderColumn>
               <TableHeaderColumn dataField="name" dataSort={true} width="100">
                 First Name
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="email" dataSort={true} width="180">
-                User Name
-              </TableHeaderColumn>
+
               <TableHeaderColumn dataField="cellNumber" width="100">
                 cellNumber
               </TableHeaderColumn>

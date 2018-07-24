@@ -1,0 +1,99 @@
+
+mutation AddFormControlType($name:String!){
+  addFormControlType(name:$name){
+    id name
+  }
+}
+  {
+  "name": "text"  / "email" /"password" /"number"/"textarea"/"select"/"range"/"radio"/"checkbox"/"SingleDatePicker"/"DateRangePicker"/
+
+}
+==========================================================================================================================================================================
+
+mutation AddForm($name:String!){
+  addForm(name:$name){
+id name 
+    controls{
+      id key label mandatory type{id name}
+    }
+  }
+}
+
+  {
+  "name": "create User"  / "edit User" /"login User"
+
+}
+==========================================================================================================================================================================
+
+
+ mutation AddFormControls(
+    $key: String!
+    $label: String!
+    $type: String!
+    $form: String!
+    $mandatory: String!
+  ) {
+    addFormControls(
+      key: $key
+      label: $label
+      type: $type
+      form: $form
+      mandatory: $mandatory
+    ) {
+      id
+      name
+      controls {
+        id
+        key
+        label
+        mandatory
+        type {
+          name
+        }
+      }
+    }
+  }
+
+  {
+  "key": "name",
+  "label": "First Name",
+  "type": "text",
+  "form": "create User",
+  "mandatory": "yes"
+}
+
+==========================================================================================================================================================================
+
+mutation AddUFC($user:String!,$form:String!,$controls:[String!]!){
+  addUFC(user:$user,form:$form,controls:$controls){
+id user{id name} form{id name}controls{id key label type{name}mandatory}
+  }
+}
+{
+  "user": "bhaskarv20@gmail.com",
+  "form": "create User",
+  "controls": [
+    "address"
+
+  ]
+}
+==========================================================================================================================================================================
+mutation RemoveUFC($user:String!,$form:String!,$controls:[String!]!){
+  removeUFC(user:$user,form:$form,controls:$controls){
+id user{id name} form{id name}controls{id key label type{name}mandatory}
+  }
+}
+
+{
+  "user": "bhaskarv20@gmail.com",
+  "form": "create User",
+  "controls": [
+    "address"
+  ]
+}
+==========================================================================================================================================================================
+
+
+==========================================================================================================================================================================
+
+==========================================================================================================================================================================

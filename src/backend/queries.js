@@ -11,13 +11,10 @@ export const Role = gql`
 export const Users = gql`
   {
     getAllUsers {
-      userId: id
       name
       email
-      password
       cellNumber
       roles {
-        id
         name
       }
     }

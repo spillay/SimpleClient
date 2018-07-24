@@ -37,8 +37,7 @@ class UFC extends Component {
                       <div className="col-md-12">
                         <img src={logo} width="2.1%" alt="" />
                         <code>
-                          {' '}
-                          User{' '}
+                          User
                           <span style={{ color: 'green' }}>
                             <i>{'bhaskarv20@gmail.com'}</i>{' '}
                           </span>{' '}
