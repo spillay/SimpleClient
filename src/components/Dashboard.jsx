@@ -47,17 +47,17 @@ class Dashboard extends React.Component {
         data-toggle="tooltip"
         data-placement="top"
         title="Edit"
-        onClick={this.handleEditUser(row.userId)}
+        onClick={this.handleEditUser(row.email)}
       >
         <i className="fa fa fa-pencil-square-o" aria-hidden="true" />
       </button>
     );
   };
 
-  handleEditUser = userId => {
+  handleEditUser = email => {
     // console.log("handleEditUser",userId)
     return e => {
-      this.setState({ isEditable: true, selectedUser: userId }); //  loading show text
+      this.setState({ isEditable: true, selectedUser: email }); //  loading show text
       // console.log(`EditUserId:${userId}`)
     };
   };
@@ -70,17 +70,17 @@ class Dashboard extends React.Component {
         data-toggle="tooltip"
         data-placement="top"
         title="Delete"
-        onClick={this.handleDeleteUser(row.userId)}
+        onClick={this.handleDeleteUser(row.email)}
       >
         <i className="fa fa fa-trash" aria-hidden="true" />
       </button>
     );
   };
 
-  handleDeleteUser = userId => {
+  handleDeleteUser = email => {
     return e => {
-      this.setState(() => ({ selectedUser: userId, isEditable: false })); // override the previous value
-      console.log(`DeleteUserId:${userId}`);
+      this.setState(() => ({ selectedUser: email, isEditable: false })); // override the previous value
+      console.log(`DeleteUserId:${email}`);
     };
   };
 
@@ -96,7 +96,7 @@ class Dashboard extends React.Component {
   };
 
   onRowSelect = (row, isSelected, e) => {
-    console.log(`is selected: ${isSelected}, UserId = ${row.userId}`);
+    console.log(`is selected: ${isSelected}, UserId = ${row.email}`);
   };
 
   renderShowsTotal = (start, to, total) => {
@@ -108,9 +108,9 @@ class Dashboard extends React.Component {
   };
 
   getUsers = () => {
-    return this.state.gdata.data.getAllUsers.map(({ userId, name }) => (
-      <div key={userId}>
-        <p>{`${userId}: ${name}`}</p>
+    return this.state.gdata.data.getAllUsers.map(({ email, name }) => (
+      <div key={email}>
+        <p>{`${email}: ${name}`}</p>
       </div>
     ));
   };

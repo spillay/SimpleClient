@@ -43,6 +43,16 @@ class Header extends React.Component {
     return (
       <div>
         <li className="nav-item list-inline-item">
+          <Link to="/addform" className="nav-link" replace>
+            Add Form Name...
+          </Link>
+        </li>
+        <li className="nav-item list-inline-item">
+          <Link to="/fct" className="nav-link" replace>
+            FormControlType...
+          </Link>
+        </li>
+        <li className="nav-item list-inline-item">
           <Link to="/ufc" className="nav-link" replace>
             GetAllUFC...
           </Link>

@@ -14,7 +14,7 @@ mutation AddForm($name:String!){
   addForm(name:$name){
 id name 
     controls{
-      id key label mandatory type{id name}
+      id key label mandatory type name
     }
   }
 }

@@ -26,15 +26,13 @@ class UserEditModal extends Component {
   }
 
   getUserAsPromise = () => {
-    const ID = this.props.selectedUser;
-    console.log('EditUserId(modal) :', ID);
-    this.readData(User, { ID }).then(result => {
+    const email = this.props.selectedUser;
+    console.log('EditUserId(modal) :', email);
+    this.readData(User, { email }).then(result => {
       console.log('UserData(Model) :', result.data.getUserById);
       var data = {};
-      data['userId'] = result.data.getUserById['userId'];
       data['name'] = result.data.getUserById['name'];
       data['email'] = result.data.getUserById['email'];
-      data['password'] = result.data.getUserById['password'];
       data['cellNumber'] = result.data.getUserById['cellNumber'];
       var roles = [];
       result.data.getUserById['roles'].map(e => {
@@ -74,17 +72,15 @@ class UserEditModal extends Component {
       var data = this.dynForm.getData();
       this.setState({ submitted: true });
       console.log('now you can submit...', data);
-      this.editUserAsPromise(editUser, data); // login mutation
+      this.editUserAsPromise(editUser, data); //  mutation
       this.props.closeModal();
     }
   };
 
   editUserAsPromise = (editUser, data) => {
     this.mutateData(editUser, {
-      ID: data.userId,
       name: data.name,
-      email: data.email,
-      password: data.password,
+      email: data.email.toString(),
       cellNumber: data.cellNumber,
       roles: data.roles
     }) // return a promise

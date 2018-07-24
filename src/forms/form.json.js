@@ -23,6 +23,55 @@ export const loginForm = [
   }
 ];
 
+export const formControlType = [
+  {
+    key: 'type',
+    label: 'Form Control Type',
+    type: 'checkbox',
+    fieldValidations: { required: true },
+    opts: { inline: false },
+    options: [
+      { key: 'text', label: 'Text', value: 'text' },
+      { key: 'email', label: 'Email', value: 'email' },
+      { key: 'password', label: 'password', value: 'password' },
+      { key: 'number', label: 'Number', value: 'number' },
+      { key: 'textarea', label: 'Textarea', value: 'textarea' },
+      { key: 'select', label: 'Select', value: 'select' },
+      { key: 'range', label: 'Range', value: 'range' },
+      { key: 'radio', label: 'Radio', value: 'radio' },
+      { key: 'checkbox', label: 'Checkbox', value: 'checkbox' },
+      {
+        key: 'SingleDatePicker',
+        label: 'SingleDatePicker',
+        value: 'SingleDatePicker'
+      },
+      {
+        key: 'DateRangePicker',
+        label: 'DateRangePicker',
+        value: 'DateRangePicker'
+      }
+    ]
+  }
+];
+
+export const addFormName = [
+  {
+    key: 'form',
+    label: 'Create New Form',
+    type: 'text',
+    fieldValidations: {
+      required: true,
+      minLength: 3,
+      maxLength: 30
+    },
+    options: {
+      autoComplete: 'given-name',
+      placeholder: 'form name...',
+      icon: 'fa fa fa-envlop'
+    }
+  }
+];
+
 export const formControlsForm = [
   {
     key: 'mandatory',

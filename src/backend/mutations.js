@@ -35,6 +35,33 @@ export const addUser = gql`
     }
   }
 `;
+
+export const editUser = gql`
+  mutation EditUser(
+    $name: String!
+    $email: String!
+    $cellNumber: String!
+    $roles: [String!]!
+  ) {
+    editUser(
+      name: $name
+      email: $email
+      cellNumber: $cellNumber
+      roles: $roles
+    ) {
+      email
+    }
+  }
+`;
+
+export const deleteUser = gql`
+  mutation DeleteUser($email: String!) {
+    deleteUser(email: $email) {
+      email
+    }
+  }
+`;
+
 export const addFormControls = gql`
   mutation AddFormControls(
     $key: String!
@@ -57,34 +84,6 @@ export const addFormControls = gql`
         mandatory
         type
       }
-    }
-  }
-`;
-
-export const editUser = gql`
-  mutation EditUser(
-    $ID: ID!
-    $name: String!
-    $email: String!
-    $cellNumber: String!
-    $roles: [String!]!
-  ) {
-    editUser(
-      _id: $ID
-      name: $name
-      email: $email
-      cellNumber: $cellNumber
-      roles: $roles
-    ) {
-      userId: id
-    }
-  }
-`;
-
-export const deleteUser = gql`
-  mutation DeleteUser($ID: ID!) {
-    deleteUser(_id: $ID) {
-      userId: id
     }
   }
 `;
@@ -123,6 +122,22 @@ export const removeUFC = gql`
         type
         mandatory
       }
+    }
+  }
+`;
+
+export const addFCT = gql`
+  mutation AddFormControlType($type: [String!]!) {
+    addFormControlType(name: $type) {
+      name
+    }
+  }
+`;
+
+export const addForm = gql`
+  mutation AddForm($name: String!) {
+    addForm(name: $name) {
+      name
     }
   }
 `;

@@ -22,12 +22,10 @@ export const Users = gql`
 `;
 
 export const User = gql`
-  query User($ID: ID!) {
-    getUserById(_id: $ID) {
-      userId: id
+  query User($email: String!) {
+    getUserById(email: $email) {
       name
       email
-      password
       cellNumber
       roles {
         name
@@ -39,12 +37,10 @@ export const User = gql`
 export const SearchUsersQuery = gql`
   query SearchUsersQuery($name: String) {
     searchUsers(name: $name) {
-      userId: id
       name
       email
       cellNumber
       roles {
-        ID: id
         name
       }
     }

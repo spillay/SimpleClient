@@ -10,7 +10,7 @@ class UserDeleteModal extends Component {
   } // end of constructor
 
   handleDeleteUser = () => {
-    this.mutateData(deleteUser, { ID: this.props.selectedUser }) // return a promise
+    this.mutateData(deleteUser, { email: this.props.selectedUser }) // return a promise
       .then(result => {
         // render datatable : we need to work
         return this.props.closeModal;
