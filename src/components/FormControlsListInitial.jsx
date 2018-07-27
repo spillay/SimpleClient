@@ -108,38 +108,44 @@ class FormControlsListInitial extends Component {
         <div>
           <div className="row">
             <div className="col-md-6">
-              {this.state.message !== undefined && (
-                <span className="badge badge-success">
-                  {this.state.message}
-                </span>
-              )}
-            </div>
-          </div>
-          <span className="badge badge-secondary">{this.props.data.name} </span>
-          <div className="row">
-            <div className="col-md-12">
-              <div className="alert alert-secondary" role="alert">
-                Master Form Controls.....
-              </div>
-            </div>
-          </div>
+              <div className="card" style={{ width: '27rem' }}>
+                <div className="card-header">
+                  <div className="row">
+                    <div className="col-md-12">
+                      <code> {this.props.data.name} </code>
+                      {'|| Master Form Controls.....'}
+                      {this.state.message !== undefined && (
+                        <span className="badge badge-success">
+                          {this.state.message}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
 
-          <form onSubmit={this.handleSubmit}>
-            <div className="error-messages">
-              {this.state.errors.map(error => <div key={error}>{error}</div>)}
-            </div>
-            {content}
-            <div className="row">
-              <div className="col-md-4 ">
-                <button
-                  className="btn btn-outline-primary btn-block"
-                  disabled={this.state.isButtonDisabled}
-                >
-                  Add....
-                </button>
+                <div className="card-body">
+                  <form onSubmit={this.handleSubmit}>
+                    <div className="error-messages">
+                      {this.state.errors.map(error => (
+                        <div key={error}>{error}</div>
+                      ))}
+                    </div>
+                    {content}
+                    <div className="row">
+                      <div className="col-md-4 ">
+                        <button
+                          className="btn btn-outline-primary btn-block"
+                          disabled={this.state.isButtonDisabled}
+                        >
+                          Add....
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       );
     }

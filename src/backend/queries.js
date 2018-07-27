@@ -72,18 +72,8 @@ export const FormControlsListQuery = gql`
 export const UserFormControlsListQuery = gql`
   query GetUFC($user: String!, $form: String!) {
     getUFC(user: $user, form: $form) {
-      user {
-        email
-      }
-      form {
-        name
-      }
-      controls {
-        key
-        label
-        mandatory
-        type
-      }
+      key
+      label
     }
   }
 `;
@@ -91,17 +81,10 @@ export const UserFormControlsListQuery = gql`
 export const GetAllUFC = gql`
   query GetAllUFC($user: String!) {
     getAllUFC(user: $user) {
-      user {
-        username: email
-      }
-      form {
-        form: name
-      }
-      exclude: controls {
-        key
-        label
-        mandatory
-        type
+      user: email
+      forms {
+        form
+        controls
       }
     }
   }

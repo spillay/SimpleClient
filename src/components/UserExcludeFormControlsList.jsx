@@ -71,7 +71,7 @@ class UserExcludeFormControlsList extends Component {
     // console.log('render :',this.state)
     var content;
     if (this.props.data !== undefined) {
-      content = this.props.data.controls.map((row, idx) => (
+      content = this.props.data.map((row, idx) => (
         <div key={'ll' + row.key} className="custom-control">
           <label
             key={'ll' + row.key}
@@ -101,36 +101,39 @@ class UserExcludeFormControlsList extends Component {
         <div>
           <div className="row">
             <div className="col-md-6">
-              {this.state.message !== undefined && (
-                <span className="badge badge-success">
-                  {this.state.message}
-                </span>
-              )}
-            </div>
-          </div>
-          <span className="badge badge-success">
-            {this.props.data.user.email}
-          </span>
-          <div className="row">
-            <div className="col-md-12">
-              <div className="alert alert-secondary" role="alert">
-                User Configuration FormControls.....
+              <div className="card" style={{ width: '27rem' }}>
+                <div className="card-header">
+                  <div className="row">
+                    <div className="col-md-12">
+                      <code> {this.props.user} </code>
+                      {'|| User Configuration'}
+                      {this.state.message !== undefined && (
+                        <span className="badge badge-success">
+                          {this.state.message}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="card-body">
+                  <form onSubmit={this.handleSubmit}>
+                    {content}
+                    <div className="row">
+                      <div className="col-md-6 ">
+                        <button
+                          className="btn btn-outline-primary btn-block"
+                          disabled={this.state.isButtonDisabled}
+                        >
+                          Include / Exclude....
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-          <form onSubmit={this.handleSubmit}>
-            {content}
-            <div className="row">
-              <div className="col-md-6 ">
-                <button
-                  className="btn btn-outline-primary btn-block"
-                  disabled={this.state.isButtonDisabled}
-                >
-                  Include / Exclude....
-                </button>
-              </div>
-            </div>
-          </form>
         </div>
       );
     }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ErrorBoundary from '../utils/ErrorBoundary';
+import logo from '../images/Loader.gif';
 import { DynamicForm } from '../DynamicForm/DynamicForm';
 import { formControlsForm } from '../forms/form.json';
 import withData from '../backend/withData';
@@ -72,44 +73,60 @@ class AddFormControls extends Component {
     return (
       <div className="row">
         <div className="col-md-6">
-          {this.state.message !== undefined && (
-            <span className="badge badge-success">{this.state.message}</span>
-          )}
-
-          <form onSubmit={this.handleSubmit}>
-            <ErrorBoundary>
-              <div className="error-messages">
-                {this.state.errors.map(error => <div key={error}>{error}</div>)}
-              </div>
-
-              <DynamicForm // configure the form  controls
-                model={formControlsForm}
-                valueData={this.state.valueData}
-                exclude={undefined}
-                groups={1} // groups will be 1 to 4 only 1=col-md-12,  2= col-md-6 , 3=col-md-4  4= col-md-3
-                columns="col-md-12"
-                ref={node => (this.dynForm = node)}
-                reload={this.reload}
-              />
-            </ErrorBoundary>
-            <hr />
-            <div className="row">
-              <div className="col-md-12 ">
-                <button
-                  className="btn btn-outline-primary btn-block"
-                  disabled={this.checkStage()}
-                >
-                  {this.state.submitted ? (
-                    <div>
-                      <i className="fa fa-spinner fa-spin" /> {'Processing...'}
-                    </div>
-                  ) : (
-                    <i className="fa fa fa-sign-in" aria-hidden="true" />
+          <div className="card" style={{ width: '23rem' }}>
+            <div className="card-header">
+              <div className="row">
+                <div className="col-md-12">
+                  <img src={logo} width="6.1%" alt="" />{' '}
+                  <code>{this.props.form}.</code>
+                  {this.state.message !== undefined && (
+                    <span className="badge badge-success">
+                      {this.state.message}
+                    </span>
                   )}
-                </button>
+                </div>
               </div>
             </div>
-          </form>
+            <div className="card-body">
+              <form onSubmit={this.handleSubmit}>
+                <ErrorBoundary>
+                  <div className="error-messages">
+                    {this.state.errors.map(error => (
+                      <div key={error}>{error}</div>
+                    ))}
+                  </div>
+
+                  <DynamicForm // configure the form  controls
+                    model={formControlsForm}
+                    valueData={this.state.valueData}
+                    exclude={undefined}
+                    groups={1} // groups will be 1 to 4 only 1=col-md-12,  2= col-md-6 , 3=col-md-4  4= col-md-3
+                    columns="col-md-12"
+                    ref={node => (this.dynForm = node)}
+                    reload={this.reload}
+                  />
+                </ErrorBoundary>
+                <hr />
+                <div className="row">
+                  <div className="col-md-12 ">
+                    <button
+                      className="btn btn-outline-primary btn-block"
+                      disabled={this.checkStage()}
+                    >
+                      {this.state.submitted ? (
+                        <div>
+                          <i className="fa fa-spinner fa-spin" />{' '}
+                          {'Processing...'}
+                        </div>
+                      ) : (
+                        <i className="fa fa fa-sign-in" aria-hidden="true" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     );

@@ -67,7 +67,7 @@ export const addFormName = [
     options: {
       autoComplete: 'given-name',
       placeholder: 'form name...',
-      icon: 'fa fa fa-envlop'
+      icon: 'fa fa fa-snowflake-o'
     }
   }
 ];
