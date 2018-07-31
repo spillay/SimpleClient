@@ -83,7 +83,9 @@ export const GetAllUFC = gql`
     getAllUFC(user: $user) {
       user: email
       forms {
-        form
+        form {
+          name
+        }
         controls
       }
     }
